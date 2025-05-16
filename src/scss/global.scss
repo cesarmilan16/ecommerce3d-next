@@ -1,7 +1,7 @@
 @use "./colors.scss" as *;
 @use "./index.scss" as *;
 
-* {
+html, body, p, h1, h2, h3, span, a {
   color: $text-primary;
 }
 
