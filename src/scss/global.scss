@@ -1,0 +1,28 @@
+@use "./colors.scss" as *;
+@use "./index.scss" as *;
+
+* {
+  color: $text-primary;
+}
+
+body {
+  margin: 0;
+  /* Chakra UI gestiona el color de fondo y el color del texto según el modo de color. */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  /* Chakra UI gestiona el color de los enlaces según el modo de color. */
+  text-decoration: none;
+}
