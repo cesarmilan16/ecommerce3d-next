@@ -17,14 +17,14 @@ const styles = {
     a: {
       color: mode("textPrimary", "textSecondary")(props),
       _hover: {
-        color: "primary.500",
+        color: "primary.600",
       },
     },
     "input:-webkit-autofill": {
-        boxShadow: "0 0 0 1000px #1d1d1d inset",
-        WebkitTextFillColor: "#fff",
-        transition: "background-color 9999s ease-in-out 0s",
-      },
+      boxShadow: "0 0 0 1000px #1d1d1d inset",
+      WebkitTextFillColor: "#fff",
+      transition: "background-color 9999s ease-in-out 0s",
+    },
   }),
 };
 
@@ -36,20 +36,24 @@ export const theme = extendTheme({
       200: "#ffcc99",
       300: "#ffb873",
       400: "#ffa34d",
-      500: "#ff5400", // $primary
-      600: "#ffa700", // $primary-hover
+      500: "#C53E4B", // $primary
+      600: "#a73740", // $primary-hover
       700: "#cc4400",
       800: "#993300",
       900: "#662200",
     },
-    primaryHover: "#ffa700", // $primary-hover
+    gold: {
+      500: "#E3B756", // decorativo (bordes, acentos)
+      600: "#c9a042", // hover
+    },
+    primaryHover: "#a73740", // $primary-hover
     textPrimary: "#fff", // $text-primary
-    textSecondary: "#909090", // $text-secondary
-    borderPrimary: "#3d3d3d", // $border-primary
-    borderSecondary: "#474747", // $border-secondary
-    backgroundPrimary: "#272727", // $background-primary
-    backgroundSecondary: "#1d1d1d", // $background-secondary
-    backgroundTertiary: "#101010", // $background-tertiary
+    textSecondary: "#B8AEB2", // $text-secondary
+    borderPrimary: "#3A2A2F", // $border-primary
+    borderSecondary: "#4A3A3F", // $border-secondary
+    backgroundPrimary: "#24191E ", // $background-primary
+    backgroundSecondary: "#1C1517", // $background-secondary
+    backgroundTertiary: "#1A1315", // $background-tertiary
     backgroundQuaternary: "#3d3d3d", // $background-quaternary
     backgroundQuaternaryBlur: "#3d3d3d10", // $background-quaternary__blur
     success: "#69af00", // $success
