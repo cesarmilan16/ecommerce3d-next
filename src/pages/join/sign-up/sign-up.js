@@ -9,7 +9,7 @@ export default function SignUp() {
     <>
       <JoinLayout>
         <div className={styles.signUp}>
-          <Heading as="h3" size={"lg"} textAlign={"left"}>Crear cuenta</Heading>
+          <Heading as="h3" size={"lg"}>Crear cuenta</Heading>
           {<RegisterForm />}
 
           <div className={styles.actions}>
