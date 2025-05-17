@@ -17,7 +17,7 @@ const styles = {
     a: {
       color: mode("textPrimary", "textSecondary")(props),
       _hover: {
-        color: "primary.600",
+        color: "primaryHover",
       },
     },
     "input:-webkit-autofill": {
@@ -30,23 +30,10 @@ const styles = {
 
 export const theme = extendTheme({
   colors: {
-    primary: {
-      50: "#fff3e6",
-      100: "#ffe0bf",
-      200: "#ffcc99",
-      300: "#ffb873",
-      400: "#ffa34d",
-      500: "#C53E4B", // $primary
-      600: "#a73740", // $primary-hover
-      700: "#cc4400",
-      800: "#993300",
-      900: "#662200",
-    },
-    gold: {
-      500: "#E3B756", // decorativo (bordes, acentos)
-      600: "#c9a042", // hover
-    },
+    primary: "#C53E4B",
     primaryHover: "#a73740", // $primary-hover
+    gold: "#E3B756",
+    goldHover: "#c9a042",
     textPrimary: "#fff", // $text-primary
     textSecondary: "#B8AEB2", // $text-secondary
     borderPrimary: "#3A2A2F", // $border-primary

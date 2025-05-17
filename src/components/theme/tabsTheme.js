@@ -6,17 +6,17 @@ const Tabs = {
       borderBottom: "2px solid",
       borderColor: "transparent",
       _selected: {
-        color: "primary.500",
-        borderColor: "primary.500",
+        color: "primary",
+        borderColor: "primary",
       },
       _hover: {
-        color: "primary.500",
-        borderColor: "primary.500",
+        color: "primary",
+        borderColor: "primary",
       },
     },
     tablist: {
       borderBottom: "2px solid",
-      borderColor: "primary.500",
+      borderColor: "primary",
     },
   },
 };

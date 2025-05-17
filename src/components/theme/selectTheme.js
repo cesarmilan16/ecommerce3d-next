@@ -10,14 +10,14 @@ const Select = {
       borderRadius: "6px",
       border: 0,
       mt: "10px",
-      _focus: { borderColor: "primary.500" },
+      _focus: { borderColor: "primary" },
     },
     item: {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      _hover: { bg: "primary.500" },
-      _active: { bg: "primary.500" },
+      _hover: { bg: "primary" },
+      _active: { bg: "primary" },
     },
   },
 };

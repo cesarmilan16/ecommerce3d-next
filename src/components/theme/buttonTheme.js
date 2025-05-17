@@ -10,16 +10,16 @@ const Button = {
   },
   variants: {
     primary: {
-      bg: "primary.500", // Rojo logo
+      bg: "primary", // Rojo logo
       _hover: {
-        bg: "primary.600",
+        bg: "primaryHover",
       },
     },
     secondary: {
-      bg: "gold.500", // Oro
+      bg: "gold", // Oro
       color: "backgroundPrimary",
       _hover: {
-        bg: "primary.400",
+        bg: "goldHover",
         color: "textPrimary",
       },
     },
