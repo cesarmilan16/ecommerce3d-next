@@ -19,7 +19,7 @@ export function LoginForm() {
                 const response = await authCtrl.login(formValue);
                 console.log(response);
 
-                router.push("/")                
+                // router.push("/")                
             } catch (error) {
                 console.error(error);
                 
