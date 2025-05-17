@@ -20,6 +20,11 @@ const styles = {
         color: "primary.500",
       },
     },
+    "input:-webkit-autofill": {
+        boxShadow: "0 0 0 1000px #1d1d1d inset",
+        WebkitTextFillColor: "#fff",
+        transition: "background-color 9999s ease-in-out 0s",
+      },
   }),
 };
 
