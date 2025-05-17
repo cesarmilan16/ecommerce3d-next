@@ -1,8 +1,14 @@
 import { Box, Stack, FormControl, FormErrorMessage, Input, Button } from "@chakra-ui/react";
 import { useFormik } from "formik";
+import { useRouter } from "next/router"
+import { Auth } from "@/api/auth"
 import { initialValues, validationSchema } from "./LoginForm.form"
 
+const authCtrl = new Auth();
+
 export function LoginForm() {
+
+    const router = useRouter();
 
     const formik = useFormik({
         initialValues: initialValues(),
@@ -10,9 +16,10 @@ export function LoginForm() {
         validateOnChange: false,
         onSubmit: async (formValue) => {
             try {
-                console.log("OK INICIO DE SESIÓN")
-                console.log(formValue);
-                
+                const response = await authCtrl.login(formValue);
+                console.log(response);
+
+                router.push("/")                
             } catch (error) {
                 console.error(error);
                 
