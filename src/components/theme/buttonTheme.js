@@ -17,10 +17,9 @@ const Button = {
     },
     secondary: {
       bg: "gold", // Oro
-      color: "backgroundPrimary",
+      color: "textTertiary",
       _hover: {
         bg: "goldHover",
-        color: "textPrimary",
       },
     },
     outline: {

@@ -36,6 +36,7 @@ export const theme = extendTheme({
     goldHover: "#c9a042",
     textPrimary: "#fff", // $text-primary
     textSecondary: "#B8AEB2", // $text-secondary
+    textTertiary: "#3B3B3B", // $text-tertiary
     borderPrimary: "#3A2A2F", // $border-primary
     borderSecondary: "#4A3A3F", // $border-secondary
     backgroundPrimary: "#24191E ", // $background-primary
