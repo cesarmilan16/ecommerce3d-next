@@ -1,7 +1,7 @@
 import { Box, Stack, FormControl, FormErrorMessage, Input, Button } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { Auth } from "@/api/auth";
+import { Auth } from "@/api";
 import { useAuth } from "@/hooks"
 import { initialValues, validationSchema } from "./LoginForm.form";
 
@@ -20,7 +20,6 @@ export function LoginForm() {
             try {
                 const response = await authCtrl.login(formValue);
                 login(response.jwt);
-                console.log(response);
                 // router.push("/")                
             } catch (error) {
                 console.error(error);
