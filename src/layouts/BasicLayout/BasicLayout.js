@@ -1,0 +1,26 @@
+import { Container } from "@chakra-ui/react";
+import classNames from "classnames";
+import { TopBar } from "@/components/Layout"
+import styles from './BasicLayout.module.scss'
+
+export function BasicLayout(props) {
+    const { children, 
+        isOpenSearch = false, 
+        isContainer = false, 
+        relative = false 
+    } = props
+
+    return (
+        <>
+            <TopBar isOpenSearch={isOpenSearch} />
+
+            <Container maxW="100vw" p={0}>
+                <div className={classNames ({ [styles.relative]: relative})}>
+                    {isContainer ? <Container>{children}</Container> : children}
+                </div>
+            </Container>
+
+            {/* TODO: Footer */}
+        </>
+    )
+}

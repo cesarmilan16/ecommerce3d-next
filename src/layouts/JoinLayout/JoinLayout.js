@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Image } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { IoMdCloseCircle } from "react-icons/io";
 import { useAuth } from "@/hooks";
@@ -20,7 +19,7 @@ export function JoinLayout(props) {
         <div className={styles.container}>
             <div className={styles.topBar}>
                 <Link href="/">
-                    <Image src="/images/logo.png" alt="3D Hispalis"></Image>
+                    <img src="/images/logo.png" alt="3D Hispalis"></img>
                 </Link>
                 <Link href="/">
                     <IoMdCloseCircle />
