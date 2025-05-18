@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { useAuth } from "@/hooks";
 import styles from './Account.module.scss';
 
+// TODO: Cambiar el total por el número de productos en el carrito
 const total = 5;
 
 export function Account() {
@@ -30,15 +31,15 @@ export function Account() {
                         borderRadius="full"
                         marginLeft={1}
                         fontSize={"sm"}
-                        paddingX={2}
-                        paddingY={1}
+                        px={1.5}
+                        py={.5}
                     >
                         {total}
                     </Badge>
                 )}
             </Button>
 
-            <Button icon className={classNames({[styles.user]: user})}>
+            <Button className={classNames({[styles.user]: user})}>
                 <Icon as={FaUser} boxSize={5} onClick={user ? goToAccount : goToLogin} />
             </Button>
         </div>
