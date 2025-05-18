@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Account } from "../Account"
 import styles from './TopBar.module.scss';
 
 export function TopBar(props) {
@@ -17,7 +18,7 @@ export function TopBar(props) {
         </div>
 
         <div className={styles.right}>
-            <span>ACCOUNT</span>
+            <Account />
         </div>
     </div>
   )

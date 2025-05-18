@@ -1,0 +1,33 @@
+@use "~/src/scss/index.scss" as *;
+
+.account {
+    display: flex;
+
+    button {
+        background-color: transparent !important;
+        @media (max-width: 768px) {
+            padding: 0;
+        }
+        >svg {
+            transition: color 0.2s;
+        }
+
+        &:hover>svg {
+            color: $primary-hover;
+        }
+    }
+
+    .user {
+        background-color: $background-tertiary !important;
+        border-radius: 10px;
+        border: 2px solid $background-tertiary;
+
+        &:hover {
+            border: 2px solid $primary;
+            
+            svg {
+                color: $text-primary;
+            }
+        }
+    }
+}
