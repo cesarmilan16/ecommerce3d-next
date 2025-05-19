@@ -1,9 +1,10 @@
 import { BasicLayout } from "@/layouts"
+import { Heading } from "@chakra-ui/react"
 
 export default function HomePage() {
   return (
     <BasicLayout>
-        <p style={{ paddingTop: 200 }}>Estamos en la Home</p>
+        <Heading as="h3" size="md" paddingTop={200}>HOME</Heading>
     </BasicLayout>
   )
 }

@@ -3,7 +3,9 @@ import { ENV } from "@/utils";
 export class Category {
     async getAll() {
         try {
-            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.CATEGORY}?populate=icon`;
+            const sort = "sort=order:asc";
+            const populate = "populate=icon";
+            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.CATEGORY}?${populate}&${sort}`;
 
             const response = await fetch(url);
             const result = await response.json();

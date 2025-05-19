@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Heading } from '@chakra-ui/react';
+import Link from "next/link";
+import { map } from "lodash";
 import { Category } from "@/api";
 import styles from './Menu.module.scss';
-import { set } from "lodash";
 
 const categoryCtrl = new Category();
 
@@ -25,10 +25,13 @@ export function Menu(props) {
     
 
   return (
-    <div>
-        <Heading as="h2" size="lg">
-            MENU
-        </Heading>
+    <div className={styles.categories}>
+        {map(categories, (category) => (
+            <Link key={category.id} href={`/categories/${category.slug}`}>
+                <img src={category.icon.url} />
+                {category.title}
+            </Link>
+        ))}
     </div>
   )
 }
