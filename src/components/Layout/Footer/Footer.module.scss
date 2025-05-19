@@ -1,0 +1,48 @@
+@use "~/src/scss/index" as *;
+
+.footer {
+    background-color: $background-tertiary;
+    padding: 30px 0;
+}
+
+.columns {
+    display: flex;
+    justify-content: space-between;
+
+    >div {
+        width: 33.33%;
+
+        >a>img {
+            width: 128px;
+            height: 128px;
+        }
+
+        >ul {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin: 0;
+            padding: 0;
+        }
+
+        &.social {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+
+            >a {
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+.copyright {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid $border-primary;
+
+    > span {
+        color: $text-secondary;
+    }
+}
