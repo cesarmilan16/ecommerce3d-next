@@ -1,5 +1,4 @@
-import Link from 'next/link';
-import { Circle, Container, Icon } from '@chakra-ui/react';
+import { Circle, Container, Icon, Link } from '@chakra-ui/react';
 import { FaInstagram, FaTiktok, FaTwitter } from "react-icons/fa";
 import styles from './Footer.module.scss';
 

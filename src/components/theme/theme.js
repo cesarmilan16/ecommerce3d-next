@@ -7,6 +7,7 @@ import Select from "./selectTheme";
 import Pagination from "./paginationTheme";
 import Input from "./inputTheme";
 import FormLabel from "./formLabelTheme";
+import Heading from "./headingTheme";
 
 const styles = {
   global: (props) => ({
@@ -55,6 +56,7 @@ export const theme = extendTheme({
     Pagination,
     Input,
     FormLabel,
+    Heading,
   },
   styles,
   config: {

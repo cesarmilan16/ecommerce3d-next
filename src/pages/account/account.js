@@ -1,13 +1,11 @@
 import { BasicLayout } from "@/layouts";
-import { Heading } from '@chakra-ui/react'
+import { Info } from "@/components/Account";
 
 export default function AccountPage() {
   return (
     <>
       <BasicLayout isContainer relative>
-        <Heading as='h2' size='lg'marginTop={100}>
-          Account
-        </Heading>
+        <Info />
       </BasicLayout>
     </>
   )
