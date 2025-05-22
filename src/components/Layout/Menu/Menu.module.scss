@@ -9,7 +9,7 @@
     padding: 0 50px 0 20px;
     border-radius: 100px 0 0 100px;
 
-    > a {
+    >a {
         display: flex;
         align-items: center;
         padding: 20px 15px;
@@ -40,8 +40,8 @@
         background-color: $primary_hover;
         cursor: pointer;
     }
-    
-    > svg {
+
+    >svg {
         margin: 0;
         font-size: 18px;
     }
@@ -68,7 +68,7 @@
         border-radius: 100px;
         border: .5px solid $primary;
 
-        > input {
+        >input {
             background-color: $primary !important;
             border: 0 !important;
             color: $text-primary !important;

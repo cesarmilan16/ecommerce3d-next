@@ -39,7 +39,7 @@ export function Account() {
                 )}
             </Button>
 
-            <Button className={classNames({[styles.user]: user})}>
+            <Button p={0} className={classNames({[styles.user]: user})}>
                 <Icon as={FaUser} boxSize={5} onClick={user ? goToAccount : goToLogin} />
             </Button>
         </div>

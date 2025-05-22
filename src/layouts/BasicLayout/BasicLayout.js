@@ -1,4 +1,4 @@
-import { Container } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import classNames from "classnames";
 import { TopBar, Footer } from "@/components/Layout"
 import styles from './BasicLayout.module.scss'
@@ -14,11 +14,13 @@ export function BasicLayout(props) {
         <>
             <TopBar isOpenSearch={isOpenSearch} />
 
-            <Container maxW="100vw" p={0}>
+            <Box width="100%" p={0} m={0}>
                 <div className={classNames ({ [styles.relative]: relative})}>
-                    {isContainer ? <Container>{children}</Container> : children}
+                    {isContainer ? <Container maxW="container.xl" px={4}>
+                        {children}
+                    </Container> : children}
                 </div>
-            </Container>
+            </Box>
 
             <Footer />
         </>

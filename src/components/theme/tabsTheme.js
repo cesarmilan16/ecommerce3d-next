@@ -1,23 +1,40 @@
+import { tabsAnatomy as parts } from "@chakra-ui/anatomy";
+
 const Tabs = {
-  baseStyle: {
-    tab: {
-      fontWeight: "bold",
-      color: "textPrimary",
-      borderBottom: "2px solid",
-      borderColor: "transparent",
-      _selected: {
-        color: "primary",
-        borderColor: "primary",
+  parts: parts.keys,
+  variants: {
+    line: {
+      tab: {
+        fontWeight: "bold",
+        color: "textSecondary",
+        borderBottom: "3px solid",
+        borderColor: "transparent",
+        borderRadius: 0,
+        
+        _selected: {
+          color: "primaryHover",
+          borderColor: "primaryHover",
+          bg: "transparent",
+        },
+        _hover: {
+          color: "primaryHover",
+          borderColor: "primaryHover",
+          bg: "transparent",
+        },
+        _focus: {
+          boxShadow: "none",
+        },
       },
-      _hover: {
-        color: "primary",
-        borderColor: "primary",
+      tablist: {
+        borderBottom: "3px solid",
+        borderColor: "borderSecondary", // el mismo color que el fondo
+        mb: 4,
       },
-    },
-    tablist: {
-      borderBottom: "2px solid",
-      borderColor: "primary",
+      tabpanel: {
+        p: 0,
+      },
     },
   },
 };
+
 export default Tabs;
