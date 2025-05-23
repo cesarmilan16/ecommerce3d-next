@@ -5,6 +5,7 @@ import { Tabs, Tab, TabList, TabPanels, TabPanel, Icon } from "@chakra-ui/react"
 import { FaSignOutAlt, FaCog } from "react-icons/fa";
 import { Info, Settings } from "@/components/Account";
 import { Box, Spinner, Center } from "@chakra-ui/react";
+import styles from "./account.module.scss";
 
 export default function AccountPage() {
   const { user, logout } = useAuth();
@@ -47,7 +48,13 @@ export default function AccountPage() {
             <TabPanel>Aquí mis pedidos</TabPanel>
             <TabPanel>Aquí la Lista de deseos</TabPanel>
             <TabPanel>Aquí las direcciones</TabPanel>
-            <TabPanel><Settings.ChangeNameForm /></TabPanel>
+            <TabPanel>
+              <Settings.ChangeNameForm />
+              <div className={styles.containerForms}>
+                <Settings.ChangeEmailForm />
+              </div>
+              <Box height="40px" />
+              </TabPanel>
           </TabPanels>
         </Tabs>
       </BasicLayout>

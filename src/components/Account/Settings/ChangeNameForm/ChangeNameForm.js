@@ -28,7 +28,7 @@ export function ChangeNameForm() {
       <FormLabel>Nombre y apellidos</FormLabel>
 
       <Flex align="flex-start">
-        <FormControl isInvalid={!!formik.errors.firstname} flex="1">
+        <FormControl isInvalid={!!formik.errors.firstname} flex="1" mr= {4}>
           <Input
             placeholder="Nombre"
             name="firstname"
@@ -36,9 +36,12 @@ export function ChangeNameForm() {
             onChange={formik.handleChange}
           />
           <FormErrorMessage>{formik.errors.firstname}</FormErrorMessage>
+          <Button type="submit" isLoading={formik.isSubmitting} mt={4}>
+            Enviar
+          </Button>
         </FormControl>
 
-        <FormControl isInvalid={!!formik.errors.lastname} flex="1" ml="4">
+        <FormControl isInvalid={!!formik.errors.lastname} flex="1">
           <Input
             placeholder="Apellidos"
             name="lastname"
@@ -47,12 +50,6 @@ export function ChangeNameForm() {
           />
           <FormErrorMessage>{formik.errors.lastname}</FormErrorMessage>
         </FormControl>
-
-        <Box ml="4">
-          <Button type="submit" isLoading={formik.isSubmitting}>
-            Enviar
-          </Button>
-        </Box>
       </Flex>
     </Box>
   )
