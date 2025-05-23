@@ -1,8 +1,11 @@
 import { FormLabel, FormControl, FormErrorMessage } from '@chakra-ui/react';
 import { Box, Flex, Input, Button } from '@chakra-ui/react';
 import { useAuth } from "@/hooks";
+import { User } from "@/api";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./ChangeNameForm.form";
+
+const userCtrl = new User();
 
 export function ChangeNameForm() {
   const { user } = useAuth();
@@ -13,8 +16,7 @@ export function ChangeNameForm() {
     validateOnChange: false,
     onSubmit: async (formValue) => {
       try {
-        console.log("FORM SUBMIT");
-        console.log(formValue);
+        await userCtrl.updateMe(user.id, formValue);
       } catch (error) {
         console.error("Error al enviar el formulario", error);
       }
