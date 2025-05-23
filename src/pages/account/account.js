@@ -3,7 +3,7 @@ import { useAuth } from "@/hooks";
 import { useRouter } from "next/router";
 import { Tabs, Tab, TabList, TabPanels, TabPanel, Icon } from "@chakra-ui/react";
 import { FaSignOutAlt, FaCog } from "react-icons/fa";
-import { Info } from "@/components/Account";
+import { Info, Settings } from "@/components/Account";
 import { Box, Spinner, Center } from "@chakra-ui/react";
 
 export default function AccountPage() {
@@ -47,7 +47,7 @@ export default function AccountPage() {
             <TabPanel>Aquí mis pedidos</TabPanel>
             <TabPanel>Aquí la Lista de deseos</TabPanel>
             <TabPanel>Aquí las direcciones</TabPanel>
-            <TabPanel>Aquí los ajustes</TabPanel>
+            <TabPanel><Settings.ChangeNameForm /></TabPanel>
           </TabPanels>
         </Tabs>
       </BasicLayout>
