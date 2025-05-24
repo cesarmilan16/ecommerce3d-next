@@ -2,8 +2,8 @@ import * as Yup from 'yup';
 
 export function initialValues(email, repeatEmail) {
   return {
-    email: email || "",
-    repeatEmail: repeatEmail || "",
+    email: "",
+    repeatEmail: "",
   };
 }
 
