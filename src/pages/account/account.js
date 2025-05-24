@@ -52,6 +52,7 @@ export default function AccountPage() {
               <Settings.ChangeNameForm />
               <div className={styles.containerForms}>
                 <Settings.ChangeEmailForm />
+                <Settings.ChangePasswordForm />
               </div>
               <Box height="40px" />
               </TabPanel>
