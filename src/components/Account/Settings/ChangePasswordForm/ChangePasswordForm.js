@@ -1,8 +1,13 @@
 import { Box, Button, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
 import { useFormik } from 'formik';
+import { User } from '@/api';
+import { useAuth } from '@/hooks';
 import { initialValues, validationSchema } from './ChangePasswordForm.form';
 
+const useCtrl = new User();
+
 export function ChangePasswordForm() {
+    const { user, logout } = useAuth();
 
     const formik = useFormik({
         initialValues: initialValues(),
@@ -10,10 +15,10 @@ export function ChangePasswordForm() {
         validateOnChange: false,
         onSubmit: async (formValue) => {
             try {
-                console.log("SEND PASSWORD");
-                console.log(formValue);
+                await useCtrl.updateMe(user.id, { password: formValue.password })
+                logout()
             } catch (error) {
-                console.error(error);
+                console.error(error)
             }
         }
     })
