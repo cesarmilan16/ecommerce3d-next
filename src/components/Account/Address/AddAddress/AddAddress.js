@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AddressForm } from '../AddressForm'
 import {
   Box,
   Button,
@@ -8,7 +9,6 @@ import {
   ModalHeader,
   ModalCloseButton,
   ModalBody,
-  ModalFooter,
 } from "@chakra-ui/react";
 
 export function AddAddress() {
@@ -24,20 +24,14 @@ export function AddAddress() {
         </Button>
       </Box>
 
-      <Modal isOpen={show} onClose={onOpenClose}>
+      <Modal isOpen={show} onClose={onOpenClose} size={"3xl"}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Nueva dirección</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            Aquí iría tu formulario de dirección.
+            <AddressForm onClose={onOpenClose} />
           </ModalBody>
-
-          <ModalFooter>
-            <Button onClick={onOpenClose}>
-              Cerrar
-            </Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
