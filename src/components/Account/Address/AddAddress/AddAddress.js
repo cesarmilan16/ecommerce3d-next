@@ -18,11 +18,12 @@ export function AddAddress() {
 
   return (
     <>
-      <Box display="flex" justifyContent="flex-end">
-        <Button onClick={onOpenClose}>
+        <Button
+          position="absolute"
+          right="0"
+          onClick={onOpenClose}>
           Crear
         </Button>
-      </Box>
 
       <Modal isOpen={show} onClose={onOpenClose} size={"3xl"}>
         <ModalOverlay />

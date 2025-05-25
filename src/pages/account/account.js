@@ -49,6 +49,7 @@ export default function AccountPage() {
             <TabPanel>Aquí la Lista de deseos</TabPanel>
             <TabPanel>
               <Address.AddAddress />
+              <Address.ListAddresses />
               <Box height="40px" />
             </TabPanel>
             <TabPanel>
