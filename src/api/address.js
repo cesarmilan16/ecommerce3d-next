@@ -48,7 +48,7 @@ export class Address {
         try {
             const url = `${ENV.API_URL}/${ENV.ENDPOINTS.ADDRESS}/${addressId}`;
             console.log(url);
-            
+
             const params = {
                 method: "PUT",
                 headers: {
@@ -63,6 +63,21 @@ export class Address {
             if (response.status !== 200) throw result;
 
             return result;
+        } catch (error) {
+            throw error;
+        };
+    };
+
+    async delete(addressId) {
+        try {
+            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.ADDRESS}/${addressId}`;
+            const params = {
+                method: "DELETE",
+            };
+
+            const response = await authFetch(url, params);
+            if (response.status === 204) return {};
+            throw new Error('Error al eliminar la dirección');
         } catch (error) {
             throw error;
         };

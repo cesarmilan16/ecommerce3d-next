@@ -12,8 +12,11 @@ import {
   ModalBody
 } from "@chakra-ui/react";
 import { Confirm } from "@/components/Shared"
+import { Address as AddressCtrl } from "@/api";
 import { EditIcon, CloseIcon } from "@chakra-ui/icons";
-import { AddressForm } from "../../AddressForm"
+import { AddressForm } from "../../AddressForm";
+
+const addressCtrl = new AddressCtrl();
 
 export function Address(props) {
     const { addressId, address, onReload } = props;
@@ -22,6 +25,15 @@ export function Address(props) {
 
     const openCloseEdit = () => setShowEdit((prevState) => !prevState);
     const openCloseConfirm = () => setShowConfirm((prevState) => !prevState);
+
+    const onDelete = async () => {
+        try {
+            await addressCtrl.delete(addressId);
+            onReload();
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <>
@@ -62,8 +74,7 @@ export function Address(props) {
             <Confirm
                 isOpen={showConfirm}
                 onClose={openCloseConfirm}
-                onConfirm={() => console.log("ELIMINADO")}
-                
+                onConfirm={onDelete}
                 title="Eliminar dirección"
                 message="¿Estás seguro de que quieres eliminar esta dirección?" 
                 />
