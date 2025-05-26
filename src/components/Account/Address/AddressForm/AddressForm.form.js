@@ -1,14 +1,14 @@
 import * as Yup from "yup";
 
-export function initialValues() {
+export function initialValues(address) {
     return {
-        title: "",
-        name: "",
-        address: "",
-        state: "",
-        city: "",
-        postal_code: "",
-        phone: "",
+        title: address?.title || "",
+        name: address?.name || "",
+        address: address?.address || "",
+        state: address?.state || "",
+        city: address?.city || "",
+        postal_code: address?.postal_code || "",
+        phone: address?.phone || ""
     }
 }
 

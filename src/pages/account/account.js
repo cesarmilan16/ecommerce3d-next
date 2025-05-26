@@ -1,4 +1,5 @@
 import { BasicLayout } from "@/layouts";
+import { useState } from "react";
 import { useAuth } from "@/hooks";
 import { useRouter } from "next/router";
 import { Tabs, Tab, TabList, TabPanels, TabPanel, Icon } from "@chakra-ui/react";
@@ -10,6 +11,7 @@ import styles from "./account.module.scss";
 export default function AccountPage() {
   const { user, logout } = useAuth();
   const router = useRouter();
+  const [reload, setReload] = useState(false)
 
   if (!user) {
     router.push("/");
@@ -21,6 +23,7 @@ export default function AccountPage() {
     );
   }
 
+  const onReload = () => setReload((prevState) => !prevState)
 
   return (
     <>
@@ -48,8 +51,8 @@ export default function AccountPage() {
             <TabPanel>Aquí mis pedidos</TabPanel>
             <TabPanel>Aquí la Lista de deseos</TabPanel>
             <TabPanel>
-              <Address.AddAddress />
-              <Address.ListAddresses />
+              <Address.AddAddress onReload={onReload} />
+              <Address.ListAddresses reload={reload} onReload={onReload} />
               <Box height="40px" />
             </TabPanel>
             <TabPanel>

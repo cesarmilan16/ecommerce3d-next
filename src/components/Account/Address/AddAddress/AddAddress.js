@@ -11,19 +11,21 @@ import {
   ModalBody,
 } from "@chakra-ui/react";
 
-export function AddAddress() {
+export function AddAddress(props) {
+  const { onReload } = props;
   const [show, setShow] = useState(false);
 
   const onOpenClose = () => setShow((prevState) => !prevState);
 
   return (
     <>
+      <Box display={"flex"} justifyContent={"flex-end"} >
         <Button
-          position="absolute"
-          right="0"
           onClick={onOpenClose}>
           Crear
         </Button>
+      </Box>
+
 
       <Modal isOpen={show} onClose={onOpenClose} size={"3xl"}>
         <ModalOverlay />
@@ -31,7 +33,7 @@ export function AddAddress() {
           <ModalHeader>Nueva dirección</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <AddressForm onClose={onOpenClose} />
+            <AddressForm onClose={onOpenClose} onReload={onReload} />
           </ModalBody>
         </ModalContent>
       </Modal>

@@ -1,10 +1,15 @@
+import { Box } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { Address } from "@/api";
+import { map } from "lodash";
+import { Address as AddressCtrl } from "@/api";
+import { Address } from "./Address";
 import { useAuth } from "@/hooks";
+import { AddAddress } from "../AddAddress";
 
-const addressCtrl = new Address();
+const addressCtrl = new AddressCtrl();
 
-export function ListAddresses() {
+export function ListAddresses(props) {
+    const { reload, onReload } = props;
     const [addresses, setAdresses] = useState(null);
     const { user } = useAuth();
 
@@ -17,11 +22,19 @@ export function ListAddresses() {
             console.error(error);
         }
       })()
-    }, [])
+    }, [reload])
     
     if (!addresses) return null;
     
     return (
-        <div>ListAddresses</div>
+        <Box>
+            {map(addresses, (address) => (
+                <Address key={address.id} 
+                addressId={address.id} 
+                address={address} 
+                onReload={onReload}
+                />
+            ))}
+        </Box>
     )
 }

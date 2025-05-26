@@ -8,18 +8,23 @@ import { initialValues, validatioSchema } from "./AddressForm.form";
 const addressCtrl = new Address();
 
 export function AddressForm(props) {
-    const { onClose } = props;
+    const { onClose, onReload, addressId, address } = props;
     const { user } = useAuth();
 
     const formik = useFormik({
-        initialValues: initialValues(),
+        initialValues: initialValues(address),
         validationSchema: validatioSchema(),
         validateOnChange: false,
         onSubmit: async (formValue) => {
             try {
-                await addressCtrl.create(formValue, user.id)
+                if (addressId) {
+                    console.log("ACTUALIZAR DIRECCIÓN");
+                } else {
+                    await addressCtrl.create(formValue, user.id);
+                }
 
                 formik.handleReset();
+                onReload();
                 onClose();
             } catch (error) {
                 console.error(error);
@@ -29,7 +34,7 @@ export function AddressForm(props) {
 
     return (
         <Box as="form" onSubmit={formik.handleSubmit}>
-            <FormLabel>Datos de la nueva dirección</FormLabel>
+            <FormLabel>Introduzca los datos</FormLabel>
             <Flex align="flex-start">
                 <FormControl isInvalid={!!formik.errors.title} flex="1" mb={4}>
                     <Input
