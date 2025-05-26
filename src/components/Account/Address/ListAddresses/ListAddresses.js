@@ -4,7 +4,6 @@ import { map } from "lodash";
 import { Address as AddressCtrl } from "@/api";
 import { Address } from "./Address";
 import { useAuth } from "@/hooks";
-import { AddAddress } from "../AddAddress";
 
 const addressCtrl = new AddressCtrl();
 
@@ -30,7 +29,7 @@ export function ListAddresses(props) {
         <Box>
             {map(addresses, (address) => (
                 <Address key={address.id} 
-                addressId={address.id} 
+                addressId={address.documentId} 
                 address={address} 
                 onReload={onReload}
                 />
