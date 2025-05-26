@@ -11,14 +11,17 @@ import {
   ModalCloseButton,
   ModalBody
 } from "@chakra-ui/react";
+import { Confirm } from "@/components/Shared"
 import { EditIcon, CloseIcon } from "@chakra-ui/icons";
 import { AddressForm } from "../../AddressForm"
 
 export function Address(props) {
     const { addressId, address, onReload } = props;
-    const [showEdit, setShowEdit] = useState(false)
+    const [showEdit, setShowEdit] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
 
     const openCloseEdit = () => setShowEdit((prevState) => !prevState);
+    const openCloseConfirm = () => setShowConfirm((prevState) => !prevState);
 
     return (
         <>
@@ -51,9 +54,19 @@ export function Address(props) {
                         icon={<CloseIcon />}
                         aria-label="Eliminar dirección"
                         size="sm"
+                        onClick={openCloseConfirm}
                     />
                 </Flex>
             </Flex>
+
+            <Confirm
+                isOpen={showConfirm}
+                onClose={openCloseConfirm}
+                onConfirm={() => console.log("ELIMINADO")}
+                
+                title="Eliminar dirección"
+                message="¿Estás seguro de que quieres eliminar esta dirección?" 
+                />
 
             <Modal isOpen={showEdit} onClose={openCloseEdit} size={"3xl"}>
                 <ModalOverlay />
