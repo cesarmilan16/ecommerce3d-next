@@ -26,3 +26,30 @@ a {
   /* Chakra UI gestiona el color de los enlaces según el modo de color. */
   text-decoration: none;
 }
+
+/* Estilos personalizados para los puntos del slider */
+.slick-dots {
+  bottom: -20px;
+  display: flex !important;
+  justify-content: center;
+
+  li {
+    margin: 0 4px;
+
+    button::before {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: $text-secondary;
+      opacity: 0.4;
+      transition: background 0.3s, opacity 0.3s;
+    }
+
+    &.slick-active button::before {
+      background: $primary;
+      opacity: 1;
+    }
+  }
+}

@@ -14,7 +14,7 @@ export function BasicLayout(props) {
         <>
             <TopBar isOpenSearch={isOpenSearch} />
 
-            <Box width="100%" p={0} m={0}>
+            <Box width="100%" p={0} m={0} pt={"168px"}>
                 <div className={classNames ({ [styles.relative]: relative})}>
                     {isContainer ? <Container maxW="container.xl" px={4}>
                         {children}

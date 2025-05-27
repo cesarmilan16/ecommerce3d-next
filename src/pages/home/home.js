@@ -1,10 +1,12 @@
 import { BasicLayout } from "@/layouts"
-import { Heading } from "@chakra-ui/react"
+import { Home } from "@/components/Home"
 
 export default function HomePage() {
   return (
-    <BasicLayout>
-        <Heading as="h3" size="md" paddingTop={200} paddingBottom={860}>HOME</Heading>
-    </BasicLayout>
-  )
+    <>
+      <BasicLayout>
+        <Home.BannerLastProductPublished />
+      </BasicLayout>
+    </>
+  );
 }
