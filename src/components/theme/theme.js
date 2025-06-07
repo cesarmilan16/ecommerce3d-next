@@ -44,7 +44,7 @@ export const theme = extendTheme({
     backgroundSecondary: "#1C1517", // $background-secondary
     backgroundTertiary: "#1A1315", // $background-tertiary
     backgroundQuaternary: "#3d3d3d", // $background-quaternary
-    backgroundQuaternaryBlur: "#3d3d3d10", // $background-quaternary__blur
+    backgroundQuaternaryBlur: "#3d3d3dad", // $background-quaternary__blur
     success: "#69af00", // $success
     danger: "#ff0a4e", // $danger
   },

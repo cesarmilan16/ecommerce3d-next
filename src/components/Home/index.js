@@ -1,5 +1,5 @@
-import { BannerLastProductPublished } from "./BannerLastProductPublished";
+import { GetBanner } from "./GetBanner";
 
 export const Home = {
-    BannerLastProductPublished,
+    GetBanner,
 };

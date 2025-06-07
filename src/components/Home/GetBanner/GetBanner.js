@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Box, Image, IconButton, Text } from "@chakra-ui/react";
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import Slider from "react-slick";
-import { Product } from "@/api";
+import { Banner } from "@/api";
 
 // Flechas personalizadas
 function CustomPrevArrow({ onClick }) {
@@ -65,16 +65,16 @@ function CustomNextArrow({ onClick }) {
     );
 }
 
-const productCtrl = new Product();
+const bannerCtrl = new Banner();
 
-export function BannerLastProductPublished() {
-    const [product, setProduct] = useState(null);
+export function GetBanner() {
+    const [banner, setBanner] = useState([]);
 
     useEffect(() => {
         (async () => {
             try {
-                const response = await productCtrl.getLastPublished();
-                setProduct(response.data[0]);
+                const response = await bannerCtrl.getBanner();
+                setBanner(response.data); // <-- guarda el array completo
 
             } catch (error) {
                 console.error(error);
@@ -82,7 +82,7 @@ export function BannerLastProductPublished() {
         })()
     }, []);
 
-    if (!product || !product.gallery || product.gallery.length === 0) return null;
+    if (!banner || banner.length === 0) return null;
 
     const settings = {
         slidesToShow: 1,
@@ -104,7 +104,7 @@ export function BannerLastProductPublished() {
             overflow="hidden"
         >
             <Slider {...settings}>
-                {product.gallery.map((img, index) => (
+                {banner.map((item, index) => (
                     <Box
                         key={index}
                         position="relative"
@@ -112,8 +112,8 @@ export function BannerLastProductPublished() {
                         h={{ base: "40dvw", md: "35dvw", lg: "30dvw" }}
                     >
                         <Image
-                            src={img.url}
-                            alt={img.name || `Imagen ${index + 1}`}
+                            src={item.image?.url}
+                            alt={item.image?.title || `Banner ${index + 1}`}
                             w="100%"
                             h="100%"
                             objectFit="cover"
@@ -121,7 +121,7 @@ export function BannerLastProductPublished() {
 
                         <Box
                             position="absolute"
-                            bottom="4"
+                            bottom="20"
                             left="4"
                             bg="rgba(0, 0, 0, 0.6)"
                             color="white"
@@ -130,7 +130,20 @@ export function BannerLastProductPublished() {
                             borderRadius="md"
                             fontSize="lg"
                         >
-                            Prueba
+                            {item.description}
+                        </Box>
+                        <Box
+                            position="absolute"
+                            bottom="8"
+                            left="4"
+                            bg="rgba(0, 0, 0, 0.6)"
+                            color="white"
+                            px="3"
+                            py="1"
+                            borderRadius="md"
+                            fontSize="lg"
+                        >
+                            {item.title}
                         </Box>
                     </Box>
                 ))}
