@@ -1,6 +1,6 @@
 import { BasicLayout } from "@/layouts"
 import { Home } from "@/components/Home"
-import { Box } from "@chakra-ui/react"
+import { Box, Container } from "@chakra-ui/react"
 
 export default function HomePage() {
   return (
@@ -9,6 +9,10 @@ export default function HomePage() {
         <Home.GetBanner />
 
         <Box h={100} />
+
+        <Container maxW={"container.lg"}>
+          <Home.LatestProducts />
+        </Container>
       </BasicLayout>
     </>
   );
