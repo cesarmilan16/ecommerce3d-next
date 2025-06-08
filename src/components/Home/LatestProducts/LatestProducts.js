@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
-import { Product } from "@/api"
+import { Product } from "@/api";
+import { Heading } from "@chakra-ui/react";
+import { GridProducts } from "@/components/Shared";
 
 const productCtrl = new Product();
 
-const limit = 9;
-const categoryId = null;
-
-export function LatestProducts() {
+export function LatestProducts(props) {
+    const {title, limit = 9, categoryId = null} = props;
     const [products, setProducts] = useState(null);
-    console.log(products);
-    
 
     useEffect(() => {
       (async () => {
@@ -29,6 +27,9 @@ export function LatestProducts() {
     if ( !products ) return null;
     
   return (
-    <div>LatestProducts</div>
+    <div>
+        <Heading size={"lg"}>{title}</Heading>
+        <GridProducts products={products} />
+    </div>
   )
 }

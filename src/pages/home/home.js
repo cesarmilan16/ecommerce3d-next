@@ -11,7 +11,7 @@ export default function HomePage() {
         <Box h={100} />
 
         <Container maxW={"container.lg"}>
-          <Home.LatestProducts />
+          <Home.LatestProducts title="Ultimos lanzamientos" />
         </Container>
       </BasicLayout>
     </>
