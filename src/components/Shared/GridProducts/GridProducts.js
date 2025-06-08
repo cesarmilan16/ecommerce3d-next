@@ -23,6 +23,7 @@ export function GridProducts(props) {
                                 opacity: 0.7,
                             }}
                             cursor="pointer"
+                            transition="all 0.3s"
                         >
                             <Image
                                 src={product.cover.url}
