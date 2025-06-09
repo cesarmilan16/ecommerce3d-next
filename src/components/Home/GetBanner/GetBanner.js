@@ -100,7 +100,7 @@ export function GetBanner() {
         <Box
             position="relative"
             w="100%"
-            h={{ base: "50vh", md: "40dvw", lg: "35dvw" }}
+            h={{ base: "50vh", md: "40dvw", lg: "28dvw" }}
             overflow="hidden"
         >
             <Slider {...settings}>
@@ -109,7 +109,7 @@ export function GetBanner() {
                         key={index}
                         position="relative"
                         w="100%"
-                        h={{ base: "50vh", md: "40dvw", lg: "35dvw" }}
+                        h={{ base: "50vh", md: "40dvw", lg: "28dvw" }}
                     >
                         <Image
                             src={item.image?.url}
