@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { map } from "lodash";
 import { fn } from "@/utils";
-import { Box, Image, Text, SimpleGrid } from "@chakra-ui/react";
+import { Box, Image, Text, SimpleGrid, Badge } from "@chakra-ui/react";
 
 export function GridProducts(props) {
     const { products } = props;
@@ -14,13 +14,14 @@ export function GridProducts(props) {
                 {map(products, (product) => (
                     <Link key={product.id} href={`/${product.slug}`}>
                         <Box
-                            borderWidth="1px"
+                            position={"relative"}
                             borderRadius="lg"
                             overflow="hidden"
+                            boxShadow={"dark-lg"}
+                            background={"backgroundTertiary"}
                             _hover={{
                                 boxShadow: "xl",
                                 transform: "scale(1.03)",
-                                opacity: 0.7,
                             }}
                             cursor="pointer"
                             transition="all 0.3s"
@@ -32,9 +33,35 @@ export function GridProducts(props) {
                                 w="100%"
                                 h="200px"
                             />
-                            <Box p="4">
-                                <Text fontWeight="bold">{product.title}</Text>
-                                <Text color="gray.500">{fn.calcDiscountedPrice(product.price, product.discount)}</Text>
+
+                            {product.discount > 0 && (
+                                <Badge
+                                    colorScheme="red"
+                                    position="absolute"
+                                    top="2"
+                                    left="2"
+                                    fontSize="0.8em"
+                                    borderRadius="md"
+                                >
+                                    -{product.discount}%
+                                </Badge>
+                            )}
+
+                            <Box
+                                position="absolute"
+                                bottom="0"
+                                w="100%"
+                                p="2"
+                                bg="rgba(0,0,0,0.6)"
+                                color="textPrimary"
+                                textAlign="center"
+                            >
+                                <Text fontWeight="bold" fontSize="md">
+                                    {product.title}
+                                </Text>
+                                <Text fontSize="sm">
+                                    {fn.calcDiscountedPrice(product.price, product.discount)}€
+                                </Text>
                             </Box>
                         </Box>
                     </Link>
