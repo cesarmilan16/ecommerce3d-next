@@ -5,8 +5,6 @@ import { Box, Image, Text, SimpleGrid, Badge } from "@chakra-ui/react";
 
 export function GridProducts(props) {
     const { products } = props;
-    console.log(products);
-
 
     return (
         <Box py={10}> {/* Separación vertical */}
