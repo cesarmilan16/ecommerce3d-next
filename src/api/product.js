@@ -41,4 +41,24 @@ export class Product {
             throw error;
         }
     }
+
+    async getProductsByCategorySlug(slug, page) {
+        try {
+            const filters = `filters[category][slug][$eq]=${slug}`;
+            const pagination = `pagination[page]=${page}&pagination[pageSize]=30`;
+            const populate = "populate=*";
+            const urlParams = `${filters}&${pagination}&${populate}`
+
+            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PRODUCT}?${urlParams}`
+
+            const response = await fetch(url);
+            const result = await response.json();
+
+            if (response.status !== 200) throw result;
+
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
