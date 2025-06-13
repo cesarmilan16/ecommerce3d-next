@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import {
@@ -23,12 +23,14 @@ import { Category } from "@/api";
 
 const categoryCtrl = new Category();
 
-export function Menu() {
+export function Menu(props) {
+  const { isOpenSearch } = props;
   const [categories, setCategories] = useState([]);
-  const [showSearch, setShowSearch] = useState(false);
+  const [showSearch, setShowSearch] = useState(isOpenSearch);
   const [searchText, setSearchText] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
+  const inputRef = useRef(null);
 
   const isMobile = useBreakpointValue({ base: true, md: true, lg: false });
 
@@ -42,6 +44,16 @@ export function Menu() {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    setSearchText(router.query.s || "")
+  }, [router.query])
+
+  useEffect(() => {
+    if (showSearch && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [showSearch]);
 
   const onSearch = () => {
     if (searchText.trim() !== "") {
@@ -152,7 +164,9 @@ export function Menu() {
           zIndex={10}
         >
           <Input
+            id="search-products"
             placeholder="Buscar..."
+            ref={inputRef}
             variant="unstyled"
             color="textPrimary"
             fontSize="16px"

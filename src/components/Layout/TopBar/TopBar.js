@@ -15,7 +15,7 @@ export function TopBar(props) {
         </div>
 
         <div className={styles.center}>
-            <Menu />
+            <Menu isOpenSearch={isOpenSearch} />
         </div>
 
         <div className={styles.right}>
