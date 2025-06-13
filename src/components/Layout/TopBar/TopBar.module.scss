@@ -15,7 +15,16 @@
         width: 128px;
     }
 
+    /* Tablet: entre 481px y 768px */
     @media (max-width: 768px) {
+        img {
+            height: 80px;
+            width: 80px;
+        }
+    }
+
+    /* Móvil: 480px o menos */
+    @media (max-width: 480px) {
         img {
             height: 64px;
             width: 64px;

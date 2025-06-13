@@ -33,7 +33,7 @@ export function Account() {
                         colorScheme="red"
                         variant="solid"
                         borderRadius="full"
-                        marginLeft={1}
+                        marginX={1}
                         fontSize={{ base: "xs", md: "sm" }}
                         px={1.5}
                         py={.5}
