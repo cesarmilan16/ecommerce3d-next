@@ -45,11 +45,11 @@ export function Menu(props) {
     })();
   }, []);
 
-useEffect(() => {
-  if (typeof router.query.s === "string") {
-    setSearchText(router.query.s);
-  }
-}, []);
+  useEffect(() => {
+    if (typeof router.query.s === "string" && searchText === "") {
+      setSearchText(router.query.s);
+    }
+  }, [router.query.s]);
 
   useEffect(() => {
     if (showSearch && inputRef.current) {
@@ -58,9 +58,7 @@ useEffect(() => {
   }, [showSearch]);
 
   const onSearch = () => {
-    if (searchText.trim() !== "") {
-      router.replace(`/search?s=${searchText.trim()}`);
-    }
+    router.replace(`/search?s=${searchText}`);
   };
 
   const openCloseSearch = () => setShowSearch(prev => !prev);

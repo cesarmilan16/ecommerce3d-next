@@ -65,7 +65,7 @@ export class Product {
     async searchProducts(text, page) {
         try {
             const filters = `filters[title][$containsi]=${encodeURIComponent(text)}`;
-            const pagination = `pagination[page]=${page}&pagination[pageSize]=3`;
+            const pagination = `pagination[page]=${page}&pagination[pageSize]=30`;
             const populate = "populate=*";
             const urlParams = `${filters}&${pagination}&${populate}`;
 
