@@ -30,23 +30,30 @@ export default function AccountPage() {
       <BasicLayout isContainer relative>
         <Info />
 
-        <Tabs variant="line">
-          <TabList>
-            <Tab>Mis pedidos</Tab>
-            <Tab>Lista de deseos</Tab>
-            <Tab>Direcciones</Tab>
-            {/* Separador flexible */}
-            <Box flex="1" />
+        <Tabs variant="line" isLazy w="100%">
+          <Box overflowX="auto" w="100%">
+            <TabList
+              display="flex"
+              flexWrap={{ base: "nowrap", md: "wrap" }}
+              whiteSpace="nowrap"
+              minW="max-content"
+            >
+              <Tab flexShrink={0}>Mis pedidos</Tab>
+              <Tab flexShrink={0}>Lista de deseos</Tab>
+              <Tab flexShrink={0}>Direcciones</Tab>
 
-            {/* Derecha */}
-            <Tab>
-              <Icon as={FaCog} mr={"5px"} fontSize="20px" />
-              Ajustes
-            </Tab>
-            <Tab onClick={logout}>
-              <Icon as={FaSignOutAlt} fontSize="20px" />
-            </Tab>
-          </TabList>
+              <Box flex="1" /> {/* Separador flexible */}
+
+              <Tab flexShrink={0}>
+                <Icon as={FaCog} mr={"5px"} fontSize="20px" />
+                <Box display={{ base: "none", md: "inline" }}>Ajustes</Box>
+              </Tab>
+              <Tab flexShrink={0} onClick={logout}>
+                <Icon as={FaSignOutAlt} fontSize="20px" />
+              </Tab>
+            </TabList>
+          </Box>
+
           <TabPanels>
             <TabPanel>Aquí mis pedidos</TabPanel>
             <TabPanel>Aquí la Lista de deseos</TabPanel>
@@ -62,7 +69,7 @@ export default function AccountPage() {
                 <Settings.ChangePasswordForm />
               </div>
               <Box height="40px" />
-              </TabPanel>
+            </TabPanel>
           </TabPanels>
         </Tabs>
       </BasicLayout>

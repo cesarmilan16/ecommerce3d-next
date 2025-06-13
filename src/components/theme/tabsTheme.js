@@ -1,4 +1,5 @@
 import { tabsAnatomy as parts } from "@chakra-ui/anatomy";
+import { m } from "framer-motion";
 
 const Tabs = {
   parts: parts.keys,
@@ -26,7 +27,7 @@ const Tabs = {
         },
       },
       tablist: {
-        borderBottom: "3px solid",
+        borderBottom: "2px solid",
         borderColor: "borderSecondary", // el mismo color que el fondo
         mb: 4,
       },
