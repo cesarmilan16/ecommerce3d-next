@@ -13,8 +13,17 @@
         width: 33.33%;
 
         >a>img {
-            width: 128px;
-            height: 128px;
+            width: 100%;
+            height: auto;
+            max-width: 128px;
+
+            @media (max-width: 768px) {
+                max-width: 120px;
+            }
+
+            @media (max-width: 480px) {
+                max-width: 90px;
+            }
         }
 
         >ul {
@@ -42,7 +51,7 @@
     padding-top: 30px;
     border-top: 1px solid $border-primary;
 
-    > span {
+    >span {
         color: $text-secondary;
     }
 }

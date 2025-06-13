@@ -23,14 +23,18 @@ export function Account() {
     return (
         <div className={styles.account}>
             <Button>
-                <Icon as={FaShoppingCart} onClick={goToCart} boxSize={5}/>
+                <Icon 
+                as={FaShoppingCart} 
+                onClick={goToCart} 
+                boxSize={{ base: 4, md: 5 }}
+                />
                 {total > 0 && (
                     <Badge
                         colorScheme="red"
                         variant="solid"
                         borderRadius="full"
                         marginLeft={1}
-                        fontSize={"sm"}
+                        fontSize={{ base: "xs", md: "sm" }}
                         px={1.5}
                         py={.5}
                     >
@@ -40,7 +44,11 @@ export function Account() {
             </Button>
 
             <Button p={0} className={classNames({[styles.user]: user})}>
-                <Icon as={FaUser} boxSize={5} onClick={user ? goToAccount : goToLogin} />
+                <Icon 
+                as={FaUser} 
+                boxSize={{ base: 4, md: 5 }}
+                onClick={user ? goToAccount : goToLogin} 
+                />
             </Button>
         </div>
     )

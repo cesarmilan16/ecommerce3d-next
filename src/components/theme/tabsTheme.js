@@ -29,7 +29,7 @@ const Tabs = {
       tablist: {
         borderBottom: "2px solid",
         borderColor: "borderSecondary", // el mismo color que el fondo
-        mb: 4,
+        mb: 8,
       },
       tabpanel: {
         p: 0,
