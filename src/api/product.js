@@ -20,7 +20,7 @@ export class Product {
         }
     }
 
-    async getLatestPublished({ limit = 9, categoryId = null}) {
+    async getLatestPublished({ limit = 9, categoryId = null }) {
 
         try {
             const filterCategory = categoryId && `filters[category][id][$eq]=${categoryId}`;
@@ -51,6 +51,25 @@ export class Product {
 
             const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PRODUCT}?${urlParams}`
 
+            const response = await fetch(url);
+            const result = await response.json();
+
+            if (response.status !== 200) throw result;
+
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async searchProducts(text, page) {
+        try {
+            const filters = `filters[title][$containsi]=${encodeURIComponent(text)}`;
+            const pagination = `pagination[page]=${page}&pagination[pageSize]=3`;
+            const populate = "populate=*";
+            const urlParams = `${filters}&${pagination}&${populate}`;
+
+            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PRODUCT}?${urlParams}`;
             const response = await fetch(url);
             const result = await response.json();
 

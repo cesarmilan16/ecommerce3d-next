@@ -45,9 +45,11 @@ export function Menu(props) {
     })();
   }, []);
 
-  useEffect(() => {
-    setSearchText(router.query.s || "")
-  }, [router.query])
+useEffect(() => {
+  if (typeof router.query.s === "string") {
+    setSearchText(router.query.s);
+  }
+}, []);
 
   useEffect(() => {
     if (showSearch && inputRef.current) {
