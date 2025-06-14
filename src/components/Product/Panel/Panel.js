@@ -1,8 +1,10 @@
 import { useState } from "react";
 import {
   Box, Container, Heading, Image, Flex, Button, Text,
-  useDisclosure, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton
+  useDisclosure, Modal, ModalOverlay, ModalContent, ModalBody,
+  ModalCloseButton, IconButton
 } from "@chakra-ui/react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { fn } from "@/utils";
 import { WishlistIcon } from "@/components/Shared";
 
@@ -10,8 +12,22 @@ export function Panel(props) {
   const { productId, product } = props;
   const finalPrice = fn.calcDiscountedPrice(product.price, product.discount).toFixed(2);
 
-  const [mainImage, setMainImage] = useState(product.cover.url);
+  const images = [product.cover, ...product.gallery];
+  const [imageIndex, setImageIndex] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const openModal = (index) => {
+    setImageIndex(index);
+    onOpen();
+  };
+
+  const nextImage = () => {
+    setImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   return (
     <Container maxW="6xl" py={10}>
@@ -26,7 +42,7 @@ export function Panel(props) {
         <Box flex="1" p={4} position="relative">
           {/* Imagen clicable */}
           <Image
-            src={mainImage}
+            src={images[imageIndex].url}
             alt={product.title}
             objectFit="cover"
             w="100%"
@@ -35,7 +51,7 @@ export function Panel(props) {
             borderRadius="md"
             mb={4}
             cursor="pointer"
-            onClick={onOpen}
+            onClick={() => openModal(imageIndex)}
           />
 
           {/* Icono wishlist */}
@@ -45,7 +61,7 @@ export function Panel(props) {
 
           {/* Miniaturas */}
           <Flex gap={3} overflowX="auto">
-            {[product.cover, ...product.gallery].map((img) => (
+            {images.map((img, i) => (
               <Image
                 key={img.id || img.url}
                 src={img.url}
@@ -54,9 +70,9 @@ export function Panel(props) {
                 objectFit="cover"
                 borderRadius="md"
                 cursor="pointer"
-                border={mainImage === img.url ? "2px solid gold" : "2px solid transparent"}
-                onMouseEnter={() => setMainImage(img.url)}
-                onClick={() => setMainImage(img.url)}
+                border={imageIndex === i ? "2px solid gold" : "2px solid transparent"}
+                onMouseEnter={() => setImageIndex(i)}
+                onClick={() => setImageIndex(i)}
                 transition="border 0.2s"
               />
             ))}
@@ -93,15 +109,68 @@ export function Panel(props) {
         </Box>
       </Flex>
 
-      {/* Modal con la imagen ampliada */}
+      {/* Modal con imagen ampliada y navegación */}
       <Modal isOpen={isOpen} onClose={onClose} isCentered size="4xl">
         <ModalOverlay />
-        <ModalContent bg="transparent" boxShadow="none">
+        <ModalContent bg="transparent" boxShadow="none" position="relative">
           <ModalCloseButton color="white" />
+
+          {/* Flechas */}
+          <IconButton
+            icon={<FaArrowLeft />}
+            aria-label="Anterior"
+            onClick={prevImage}
+            position="absolute"
+            top="50%"
+            left="4"
+            transform="translateY(-50%)"
+            zIndex="2"
+            bg="#transparent"
+            color="#ffffff"
+            transition={"all 0.2s ease-in-out"}
+            _hover={{
+                bg: "#a73740",
+                borderColor: "#a73740",
+                transform: "translateY(-50%) scale(1.1)",
+            }}
+            _active={{
+                transform: "translateY(-50%) scale(0.95)",
+                bg: "none",
+                borderColor: "none",
+            }}
+            size="md"
+            rounded="full"
+          />
+          <IconButton
+            icon={<FaArrowRight />}
+            aria-label="Siguiente"
+            onClick={nextImage}
+            position="absolute"
+            top="50%"
+            right="4"
+            transform="translateY(-50%)"
+            zIndex="2"
+            bg="#transparent"
+            color="#ffffff"
+            transition={"all 0.2s ease-in-out"}
+            _hover={{
+                bg: "#a73740",
+                borderColor: "#a73740",
+                transform: "translateY(-50%) scale(1.1)",
+            }}
+            _active={{
+                transform: "translateY(-50%) scale(0.95)",
+                bg: "none",
+                borderColor: "none",
+            }}
+            size="md"
+            rounded="full"
+          />
+
           <ModalBody p={0}>
             <Image
-              src={mainImage}
-              alt="Vista ampliada"
+              src={images[imageIndex].url}
+              alt={`Imagen ampliada ${imageIndex}`}
               objectFit="contain"
               w="100%"
               maxH="90vh"
