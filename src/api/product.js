@@ -96,7 +96,7 @@ export class Product {
 
             if (response.status !== 200) throw result;
 
-            return result;
+            return result.data[0];
         } catch (error) {
             throw error;
         }
