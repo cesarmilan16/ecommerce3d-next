@@ -1,4 +1,4 @@
-import { Box, IconButton, useToast } from "@chakra-ui/react";
+import { IconButton, useToast } from "@chakra-ui/react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useState } from "react";
 
