@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Box, Container, Heading, Image, Flex, Button, Text } from "@chakra-ui/react";
 import { fn } from "@/utils";
+import { WishlistIcon } from "@/components/Shared";
 
 export function Panel(props) {
     const { productId, product } = props;
@@ -18,7 +19,7 @@ export function Panel(props) {
                 boxShadow="lg"
             >
                 {/* Imagen principal + galería */}
-                <Box flex="1" p={4}>
+                <Box flex="1" p={4} position={"relative"}>
                     <Image
                         src={mainImage}
                         alt={product.title}
@@ -29,6 +30,10 @@ export function Panel(props) {
                         borderRadius="md"
                         mb={4}
                     />
+
+                    <Box position="absolute" top="6" left="6">
+                        <WishlistIcon productId={productId} />
+                    </Box>
 
                     <Flex gap={3} overflowX="auto">
                         {[product.cover, ...product.gallery].map((img) => (
