@@ -81,7 +81,6 @@ export function Menu(props) {
       mr="auto"
       display="flex"
       alignItems="center"
-      backdropFilter="blur(10px)"
       overflow="hidden"
     >
       {/* Menú hamburguesa en móvil */}
