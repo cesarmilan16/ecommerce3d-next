@@ -119,7 +119,7 @@ export function Panel(props) {
           size="lg" 
           w="100%"
           onClick={addCartWrapper}
-          _loading={loading}
+          isLoading={loading}
           >
             Comprar ahora
           </Button>

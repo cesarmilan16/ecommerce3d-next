@@ -36,4 +36,24 @@ export class Cart {
 
         return count;
     }
+
+    changeQuantity(productId, quantity) {
+        const products = this.getAll();
+        const objIndex = products.findIndex((product) => product.id === productId);
+
+        products[objIndex].quantity = quantity;
+
+        localStorage.setItem(ENV.CART, JSON.stringify(products));
+    }
+
+    delete(productId) {
+        const products = this.getAll();
+        const updateProducts = products.filter((product) => product.id !== productId);
+
+        localStorage.setItem(ENV.CART, JSON.stringify(updateProducts));
+    }
+
+    deleteAll() {
+        localStorage.removeItem(ENV.CART);
+    }
 };
