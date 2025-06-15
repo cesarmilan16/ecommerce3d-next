@@ -27,6 +27,7 @@ export default function AccountPage() {
 
   return (
     <>
+      <Seo title={"Mi cuenta"}/>
       <BasicLayout isContainer relative>
         <Info />
 

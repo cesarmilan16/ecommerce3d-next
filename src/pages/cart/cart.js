@@ -4,6 +4,7 @@ import { Product } from "@/api";
 import { CartLayout } from "@/layouts";
 import { useCart } from "@/hooks";
 import { Cart } from "@/components/Cart";
+import { Seo } from "@/components/Shared";
 
 const productCtrl = new Product();
 
@@ -35,6 +36,7 @@ export default function CartPage() {
 
     return (
         <>
+            <Seo title={"Carrito"}/>
             <CartLayout>
                 {currentStep === 1 && <Cart.StepOne products={products}/>}
                 {currentStep === 2 && <Cart.StepTwo products={products}/>}

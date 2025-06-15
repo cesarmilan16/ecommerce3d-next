@@ -1,7 +1,7 @@
 import { BasicLayout } from "@/layouts";
 import { Home } from "@/components/Home";
 import { Box, Container } from "@chakra-ui/react";
-import { BarTrust, BannerAd } from "@/components/Shared";
+import { BarTrust, BannerAd, Seo } from "@/components/Shared";
 
 const categoryId = {
   figuras: 2,
@@ -11,9 +11,10 @@ const categoryId = {
 }
 
 export default function HomePage() {
-  
+
   return (
     <>
+      <Seo />
       <BasicLayout>
         <Home.GetBanner />
 
@@ -35,7 +36,7 @@ export default function HomePage() {
 
         <Box h={50} />
 
-        <BannerAd index={1}/>
+        <BannerAd index={1} />
 
         <Box h={50} />
 

@@ -1,7 +1,7 @@
 import { Container, Box, Heading } from "@chakra-ui/react";
 import { size } from "lodash";
 import { BasicLayout } from "@/layouts";
-import { GridProducts, NoResult, Pagination } from "@/components/Shared";
+import { GridProducts, NoResult, Pagination, Seo } from "@/components/Shared";
 
 export default function CategoryPage(props) {
     const { products, category, pagination } = props;
@@ -9,6 +9,7 @@ export default function CategoryPage(props) {
     
     return (
         <>
+            <Seo title={category.title}/>
             <BasicLayout relative>
                 <Container maxW="container.lg" textAlign={"center"}>
                     <Box h={50} />
