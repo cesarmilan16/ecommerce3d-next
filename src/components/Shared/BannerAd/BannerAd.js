@@ -51,11 +51,11 @@ export function BannerAd(props) {
             >
                 <VStack spacing={4} color="white" textAlign="center">
                     <Text fontSize="2xl" fontWeight="bold">
-                        {banner.description}
+                        Cuéntanos tu idea y la haremos realidad con impresión 3D de calidad
                     </Text>
                     <Link href={banner.link || "#"}>
                         <Button size="lg" color={"textPrimary"} mt={4}>
-                            Ver más
+                            Contáctanos
                         </Button>
                     </Link>
                 </VStack>

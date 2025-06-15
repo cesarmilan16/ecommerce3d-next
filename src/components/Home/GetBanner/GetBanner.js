@@ -131,7 +131,7 @@ export function GetBanner() {
                             borderRadius="md"
                             fontSize="lg"
                         >
-                            {item.description}
+                            {/* {item.description} */}
                         </Box>
                         <Box
                             position="absolute"
@@ -144,7 +144,7 @@ export function GetBanner() {
                             borderRadius="md"
                             fontSize="lg"
                         >
-                            {item.title}
+                            {/* {item.title} */}
                         </Box>
                     </Box>
                 ))}
