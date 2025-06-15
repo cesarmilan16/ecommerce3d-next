@@ -19,7 +19,7 @@ export function ChangeEmailForm() {
                 updateUser("email", formValue.email);
                 formik.handleReset();
             } catch (error) {
-                console.log(error);
+                console.error(error);
             }
         },
     });

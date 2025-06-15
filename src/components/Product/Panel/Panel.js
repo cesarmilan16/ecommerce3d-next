@@ -9,7 +9,7 @@ import { fn } from "@/utils";
 import { WishlistIcon } from "@/components/Shared";
 
 export function Panel(props) {
-  const { productId, product } = props;
+  const { productId, product, productDocumentId } = props;
   const finalPrice = fn.calcDiscountedPrice(product.price, product.discount).toFixed(2);
 
   const images = [product.cover, ...product.gallery];
@@ -56,7 +56,7 @@ export function Panel(props) {
 
           {/* Icono wishlist */}
           <Box position="absolute" top="6" left="6">
-            <WishlistIcon productId={productId} />
+            <WishlistIcon productId={productId} productDocumentId={productDocumentId} />
           </Box>
 
           {/* Miniaturas */}

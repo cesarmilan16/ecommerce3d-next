@@ -1,21 +1,63 @@
 import { IconButton, useToast } from "@chakra-ui/react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { useState } from "react";
+import { Wishlist } from "@/api";
+import { useState, useEffect } from "react";
+import { useAuth } from "@/hooks";
 
-export function WishlistIcon({ productId }) {
+const wishlistCtrl = new Wishlist();
+
+export function WishlistIcon(props) {
+    const { productId, productDocumentId } = props;
     const [isInWishlist, setIsInWishlist] = useState(false);
+    const [wishlistId, setWishlistId] = useState(null); // <-- Guarda el ID
     const toast = useToast();
+    const { user } = useAuth();
+    
+    useEffect(() => {
+        if (!user || !productId) return;
 
-    const handleToggle = () => {
-        setIsInWishlist(!isInWishlist);
-        toast({
-            title: isInWishlist
-                ? "Eliminado de la lista de deseos"
-                : "Añadido a la lista de deseos",
-            status: isInWishlist ? "warning" : "success",
-            duration: 1500,
-            isClosable: true,
-        });
+        (async () => {
+            try {
+                const response = await wishlistCtrl.check(user.id, productId);
+                if (response) {
+                    setIsInWishlist(true);
+                    setWishlistId(response.documentId); // Guarda el ID para poder eliminar
+                } else {
+                    setIsInWishlist(false);
+                    setWishlistId(null);
+                }
+            } catch (error) {
+                console.error("Error al consultar wishlist:", error);
+                setIsInWishlist(false);
+            }
+        })();
+    }, [user, productId]);
+
+    const handleToggle = async () => {
+        try {
+            if (isInWishlist) {
+                await wishlistCtrl.delete(wishlistId);
+                setIsInWishlist(false);
+                toast({
+                    title: "Eliminado de la lista de deseos",
+                    status: "warning",
+                    duration: 1500,
+                    isClosable: true,
+                });
+            } else {
+                const response = await wishlistCtrl.add(user.id, productDocumentId);
+                setIsInWishlist(true);
+                setWishlistId(response.data.id); // Nuevo ID
+                toast({
+                    title: "Añadido a la lista de deseos",
+                    status: "success",
+                    duration: 1500,
+                    isClosable: true,
+                });
+            }
+        } catch (error) {
+            console.error("Error al modificar la wishlist:", error);
+        }
     };
 
     return (
@@ -32,6 +74,5 @@ export function WishlistIcon({ productId }) {
             borderRadius="md"
             mt={2}
         />
-
     );
 }

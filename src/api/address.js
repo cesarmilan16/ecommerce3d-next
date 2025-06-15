@@ -47,7 +47,6 @@ export class Address {
     async update(data, addressId) {
         try {
             const url = `${ENV.API_URL}/${ENV.ENDPOINTS.ADDRESS}/${addressId}`;
-            console.log(url);
 
             const params = {
                 method: "PUT",
