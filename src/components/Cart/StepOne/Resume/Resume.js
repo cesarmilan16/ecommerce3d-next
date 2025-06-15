@@ -40,14 +40,14 @@ export function Resume({ products }) {
     if (!totals) return null;
 
     return (
-        <Box 
-        bg="backgroundTertiary" 
-        p={6} 
-        borderRadius="lg" 
-        boxShadow="md" 
-        w="100%" 
-        border="1px solid"
-        borderColor="whiteAlpha.400"
+        <Box
+            bg="backgroundTertiary"
+            p={6}
+            borderRadius="lg"
+            boxShadow="md"
+            w="100%"
+            border="1px solid"
+            borderColor="whiteAlpha.400"
         >
             <Heading as="h2" size="md" mb={4}>Resumen</Heading>
 
@@ -66,7 +66,11 @@ export function Resume({ products }) {
                 </Box>
             </Stack>
 
-            <Button width="100%" onClick={goToStepTwo}>
+            <Button
+                width="100%"
+                onClick={goToStepTwo}
+                isDisabled={totals.price === 0}
+            >
                 Proceder con el pago
             </Button>
 
