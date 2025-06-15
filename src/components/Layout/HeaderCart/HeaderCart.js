@@ -1,4 +1,4 @@
-import { Box, Image, Icon, Text, Flex, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Image, Icon, Text, Flex } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { map } from "lodash";
@@ -15,8 +15,6 @@ export function HeaderCart() {
     { number: 2, title: "Pago" },
     { number: 3, title: "Confirmación" },
   ];
-
-  const isMobile = useBreakpointValue({ base: true, md: false });
 
   return (
     <Flex
