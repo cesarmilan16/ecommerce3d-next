@@ -15,8 +15,8 @@ export function CartProvider(props) {
         setCart(response);
     }, []);
 
-    const addCart = (gameId) => {
-        cartCtrl.add(gameId);
+    const addCart = (productId) => {
+        cartCtrl.add(productId);
         refreshTotalCart();
     };
 

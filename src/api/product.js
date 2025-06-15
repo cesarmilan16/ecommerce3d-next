@@ -101,4 +101,20 @@ export class Product {
             throw error;
         }
     }
+
+    async getProductById(documentId) {
+        try {
+            const populate = `populate[0]=cover&populate[1]=category`;
+
+            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PRODUCT}/${documentId}?${populate}`;
+            const response = await fetch(url);
+            const result = await response.json();
+
+            if (response.status !== 200) throw result;
+
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
 }

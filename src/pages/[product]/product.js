@@ -14,7 +14,7 @@ export default function ProductPage(props) {
         <>
             <BasicLayout>
                 <Product.HeaderCover image={cover.url} />
-                <Product.Panel productId={product.id}
+                <Product.Panel productId={product.documentId}
                     productDocumentId={documentId}
                     product={product}
                 />
