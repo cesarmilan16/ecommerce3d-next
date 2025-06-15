@@ -96,7 +96,7 @@ export function GridProducts(props) {
                                 right="2"
                                 bg="gray.700"
                                 color={"#e74c3c"}
-                                _hover={{ bg: "gray.600", color: "#e74c3c" }}
+                                _hover={{ bg: "gray.600"}}
                                 _focus={{ boxShadow: "none" }}
                                 size="sm"
                                 zIndex={2}
