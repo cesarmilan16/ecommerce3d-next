@@ -66,7 +66,7 @@ export function Resume({ products }) {
                 </Box>
             </Stack>
 
-            <Button colorScheme="teal" width="100%" onClick={goToStepTwo}>
+            <Button width="100%" onClick={goToStepTwo}>
                 Proceder con el pago
             </Button>
 
