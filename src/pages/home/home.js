@@ -11,6 +11,7 @@ const categoryId = {
 }
 
 export default function HomePage() {
+  
   return (
     <>
       <BasicLayout>
