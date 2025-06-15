@@ -15,4 +15,5 @@ export const ENV = {
     WISHLIST: "whishlists",
   },
   TOKEN: "token",
+  CART: "cart",
 };

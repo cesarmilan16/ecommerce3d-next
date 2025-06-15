@@ -2,14 +2,12 @@ import { Button, Badge, Icon } from '@chakra-ui/react';
 import { FaUser, FaShoppingCart } from "react-icons/fa";
 import { useRouter } from "next/router";
 import classNames from 'classnames';
-import { useAuth } from "@/hooks";
+import { useAuth, useCart } from "@/hooks";
 import styles from './Account.module.scss';
-
-// TODO: Cambiar el total por el número de productos en el carrito
-const total = 5;
 
 export function Account() {
     const router = useRouter();
+    const { total } = useCart();
     const { user } = useAuth();
 
     const goToLogin = () => router.push('/join/sign-in');

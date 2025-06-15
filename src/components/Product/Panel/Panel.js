@@ -5,16 +5,28 @@ import {
   ModalCloseButton, IconButton
 } from "@chakra-ui/react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { useCart } from "@/hooks";
 import { fn } from "@/utils";
 import { WishlistIcon } from "@/components/Shared";
 
 export function Panel(props) {
   const { productId, product, productDocumentId } = props;
-  const finalPrice = fn.calcDiscountedPrice(product.price, product.discount).toFixed(2);
+  const [loading, setLoading] = useState(false);
+  const { addCart } = useCart();
 
+  const finalPrice = fn.calcDiscountedPrice(product.price, product.discount).toFixed(2);
   const images = [product.cover, ...product.gallery];
   const [imageIndex, setImageIndex] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const addCartWrapper = () => {
+    setLoading(true);
+    addCart(productId);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  }
 
   const openModal = (index) => {
     setImageIndex(index);
@@ -103,7 +115,12 @@ export function Panel(props) {
             {product.summary}
           </Text>
 
-          <Button size="lg" w="100%">
+          <Button 
+          size="lg" 
+          w="100%"
+          onClick={addCartWrapper}
+          _loading={loading}
+          >
             Comprar ahora
           </Button>
         </Box>
