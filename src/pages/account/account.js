@@ -7,6 +7,7 @@ import { FaSignOutAlt, FaCog } from "react-icons/fa";
 import { Info, Settings, Address, Wishlist, Orders } from "@/components/Account";
 import { Box, Spinner, Center } from "@chakra-ui/react";
 import styles from "./account.module.scss";
+import { Seo } from "@/components/Shared";
 
 export default function AccountPage() {
   const { user, logout } = useAuth();
@@ -27,7 +28,7 @@ export default function AccountPage() {
 
   return (
     <>
-      <Seo title={"Mi cuenta"}/>
+      <Seo title={"Mi cuenta"} />
       <BasicLayout isContainer relative>
         <Info />
 

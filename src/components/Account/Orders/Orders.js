@@ -28,7 +28,7 @@ export function Orders() {
   }
 
   return (
-    <Box mt={8}>
+    <Box my={8}>
       <Heading as="h2" size="md" mb={6}>
         Tus pedidos
       </Heading>
