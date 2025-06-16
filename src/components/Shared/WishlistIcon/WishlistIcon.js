@@ -9,7 +9,7 @@ const wishlistCtrl = new Wishlist();
 export function WishlistIcon(props) {
     const { productId } = props;
     const [isInWishlist, setIsInWishlist] = useState(false);
-    const [wishlistId, setWishlistId] = useState(null); // <-- Guarda el ID
+    const [wishlistId, setWishlistId] = useState(null); // Guarda el documentId
     const toast = useToast();
     const { user } = useAuth();
 
@@ -19,10 +19,11 @@ export function WishlistIcon(props) {
         (async () => {
             try {
                 const response = await wishlistCtrl.check(user.id, productId);
-                
+
                 if (response) {
                     setIsInWishlist(true);
-                    setWishlistId(response.id); // Guarda el ID para poder eliminar
+                    setWishlistId(response.documentId); // usamos documentId
+                    console.log("documentId:", response.documentId);
                 } else {
                     setIsInWishlist(false);
                     setWishlistId(null);
@@ -47,7 +48,8 @@ export function WishlistIcon(props) {
 
         try {
             if (isInWishlist) {
-                await wishlistCtrl.delete(wishlistId);
+                console.log("Eliminando por documentId:", wishlistId);
+                await wishlistCtrl.delete(wishlistId); // usa documentId
                 setIsInWishlist(false);
                 toast({
                     title: "Eliminado de la lista de deseos",
@@ -58,7 +60,7 @@ export function WishlistIcon(props) {
             } else {
                 const response = await wishlistCtrl.add(user.id, productId);
                 setIsInWishlist(true);
-                setWishlistId(response.data.id);
+                setWishlistId(response.data.documentId);
                 toast({
                     title: "Añadido a la lista de deseos",
                     status: "success",

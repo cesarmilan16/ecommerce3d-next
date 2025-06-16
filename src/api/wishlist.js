@@ -3,8 +3,6 @@ import { ENV, authFetch } from "@/utils";
 export class Wishlist {
     async check(userId, productId) {
         try {
-            console.log(userId, productId);
-            
             const filterUser = `filters[user][id][$eq][0]=${userId}`;
             const filterProduct = `filters[product][documentId][$eq][1]=${productId}`;
             const urlParams = `${filterUser}&${filterProduct}`;
@@ -21,7 +19,7 @@ export class Wishlist {
                 return false;
             }
 
-            return result.data[0];
+            return result.data;
         } catch (error) {
             throw error;
         }
