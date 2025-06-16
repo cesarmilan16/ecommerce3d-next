@@ -10,7 +10,7 @@ import { fn } from "@/utils";
 import { WishlistIcon } from "@/components/Shared";
 
 export function Panel(props) {
-  const { productId, product, productDocumentId } = props;
+  const { productId, product } = props;
   const [loading, setLoading] = useState(false);
   const { addCart } = useCart();
   const { user } = useAuth();
@@ -80,7 +80,7 @@ export function Panel(props) {
 
           {/* Icono wishlist */}
           <Box position="absolute" top="6" left="6">
-            <WishlistIcon productId={productId} productDocumentId={productDocumentId} />
+            <WishlistIcon productId={productId} />
           </Box>
 
           {/* Miniaturas */}

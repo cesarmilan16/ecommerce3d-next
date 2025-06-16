@@ -6,10 +6,6 @@ import { Seo } from "@/components/Shared";
 export default function ProductPage(props) {
     const { product } = props;
     const cover = product.cover;
-    const documentId = product.documentId;
-    console.log(documentId);
-
-
 
     return (
         <>
@@ -17,7 +13,6 @@ export default function ProductPage(props) {
             <BasicLayout>
                 <Product.HeaderCover image={cover.url} />
                 <Product.Panel productId={product.documentId}
-                    productDocumentId={documentId}
                     product={product}
                 />
 

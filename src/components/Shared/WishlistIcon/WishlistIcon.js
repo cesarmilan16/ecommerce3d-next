@@ -7,7 +7,7 @@ import { useAuth } from "@/hooks";
 const wishlistCtrl = new Wishlist();
 
 export function WishlistIcon(props) {
-    const { productId, productDocumentId } = props;
+    const { productId } = props;
     const [isInWishlist, setIsInWishlist] = useState(false);
     const [wishlistId, setWishlistId] = useState(null); // <-- Guarda el ID
     const toast = useToast();
@@ -19,9 +19,10 @@ export function WishlistIcon(props) {
         (async () => {
             try {
                 const response = await wishlistCtrl.check(user.id, productId);
+                
                 if (response) {
                     setIsInWishlist(true);
-                    setWishlistId(response.documentId); // Guarda el ID para poder eliminar
+                    setWishlistId(response.id); // Guarda el ID para poder eliminar
                 } else {
                     setIsInWishlist(false);
                     setWishlistId(null);
@@ -55,7 +56,7 @@ export function WishlistIcon(props) {
                     isClosable: true,
                 });
             } else {
-                const response = await wishlistCtrl.add(user.id, productDocumentId);
+                const response = await wishlistCtrl.add(user.id, productId);
                 setIsInWishlist(true);
                 setWishlistId(response.data.id);
                 toast({

@@ -3,13 +3,16 @@ import { ENV, authFetch } from "@/utils";
 export class Wishlist {
     async check(userId, productId) {
         try {
+            console.log(userId, productId);
+            
             const filterUser = `filters[user][id][$eq][0]=${userId}`;
-            const filterProduct = `filters[product][id][$eq][1]=${productId}`;
+            const filterProduct = `filters[product][documentId][$eq][1]=${productId}`;
             const urlParams = `${filterUser}&${filterProduct}`;
 
             const url = `${ENV.API_URL}/${ENV.ENDPOINTS.WISHLIST}?${urlParams}`;
 
             const response = await authFetch(url);
+            
             const result = await response.json();
 
             if (response.status !== 200) throw result;
@@ -24,7 +27,7 @@ export class Wishlist {
         }
     }
 
-    async add(userId, productDocumentId) {
+    async add(userId, productId) {
         try {
             const url = `${ENV.API_URL}/${ENV.ENDPOINTS.WISHLIST}`;
             const params = {
@@ -35,7 +38,7 @@ export class Wishlist {
                 body: JSON.stringify({
                     data: {
                         user: userId,
-                        product: productDocumentId,
+                        product: productId,
                     },
                 }),
             };
