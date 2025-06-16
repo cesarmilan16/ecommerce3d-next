@@ -2,10 +2,10 @@ import { useState } from "react";
 import {
   Box, Container, Heading, Image, Flex, Button, Text,
   useDisclosure, Modal, ModalOverlay, ModalContent, ModalBody,
-  ModalCloseButton, IconButton
+  ModalCloseButton, IconButton, useToast
 } from "@chakra-ui/react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { useCart } from "@/hooks";
+import { useCart, useAuth } from "@/hooks";
 import { fn } from "@/utils";
 import { WishlistIcon } from "@/components/Shared";
 
@@ -13,6 +13,8 @@ export function Panel(props) {
   const { productId, product, productDocumentId } = props;
   const [loading, setLoading] = useState(false);
   const { addCart } = useCart();
+  const { user } = useAuth();
+  const toast = useToast();
 
   const finalPrice = fn.calcDiscountedPrice(product.price, product.discount).toFixed(2);
   const images = [product.cover, ...product.gallery];
@@ -20,13 +22,23 @@ export function Panel(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const addCartWrapper = () => {
+    if (!user) {
+      toast({
+        title: "Debes iniciar sesión para añadir productos al carrito.",
+        status: "info",
+        duration: 2000,
+        isClosable: true,
+      });
+      return;
+    }
+
     setLoading(true);
     addCart(productId);
 
     setTimeout(() => {
       setLoading(false);
     }, 500);
-  }
+  };
 
   const openModal = (index) => {
     setImageIndex(index);
@@ -115,11 +127,11 @@ export function Panel(props) {
             {product.summary}
           </Text>
 
-          <Button 
-          size="lg" 
-          w="100%"
-          onClick={addCartWrapper}
-          isLoading={loading}
+          <Button
+            size="lg"
+            w="100%"
+            onClick={addCartWrapper}
+            isLoading={loading}
           >
             Comprar ahora
           </Button>
@@ -146,14 +158,14 @@ export function Panel(props) {
             color="#ffffff"
             transition={"all 0.2s ease-in-out"}
             _hover={{
-                bg: "#a73740",
-                borderColor: "#a73740",
-                transform: "translateY(-50%) scale(1.1)",
+              bg: "#a73740",
+              borderColor: "#a73740",
+              transform: "translateY(-50%) scale(1.1)",
             }}
             _active={{
-                transform: "translateY(-50%) scale(0.95)",
-                bg: "none",
-                borderColor: "none",
+              transform: "translateY(-50%) scale(0.95)",
+              bg: "none",
+              borderColor: "none",
             }}
             size="md"
             rounded="full"
@@ -171,14 +183,14 @@ export function Panel(props) {
             color="#ffffff"
             transition={"all 0.2s ease-in-out"}
             _hover={{
-                bg: "#a73740",
-                borderColor: "#a73740",
-                transform: "translateY(-50%) scale(1.1)",
+              bg: "#a73740",
+              borderColor: "#a73740",
+              transform: "translateY(-50%) scale(1.1)",
             }}
             _active={{
-                transform: "translateY(-50%) scale(0.95)",
-                bg: "none",
-                borderColor: "none",
+              transform: "translateY(-50%) scale(0.95)",
+              bg: "none",
+              borderColor: "none",
             }}
             size="md"
             rounded="full"

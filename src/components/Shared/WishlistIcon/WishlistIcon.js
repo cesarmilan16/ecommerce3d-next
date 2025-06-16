@@ -12,7 +12,7 @@ export function WishlistIcon(props) {
     const [wishlistId, setWishlistId] = useState(null); // <-- Guarda el ID
     const toast = useToast();
     const { user } = useAuth();
-    
+
     useEffect(() => {
         if (!user || !productId) return;
 
@@ -34,6 +34,16 @@ export function WishlistIcon(props) {
     }, [user, productId]);
 
     const handleToggle = async () => {
+        if (!user) {
+            toast({
+                title: "Debes iniciar sesión para usar la lista de deseos.",
+                status: "info",
+                duration: 2000,
+                isClosable: true,
+            });
+            return;
+        }
+
         try {
             if (isInWishlist) {
                 await wishlistCtrl.delete(wishlistId);
@@ -47,7 +57,7 @@ export function WishlistIcon(props) {
             } else {
                 const response = await wishlistCtrl.add(user.id, productDocumentId);
                 setIsInWishlist(true);
-                setWishlistId(response.data.id); // Nuevo ID
+                setWishlistId(response.data.id);
                 toast({
                     title: "Añadido a la lista de deseos",
                     status: "success",
