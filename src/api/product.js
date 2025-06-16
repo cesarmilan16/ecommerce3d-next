@@ -104,12 +104,9 @@ export class Product {
 
     async getProductById(documentId) {
         try {
-            const filters = `filters[title][$containsi]=${encodeURIComponent(title)}`;
-            const pagination = `pagination[limit]=5`;
-            const populate = `populate=cover`;
-            const urlParams = `${filters}&${pagination}&${populate}`;
+            const populate = `populate[0]=cover&populate[1]=category`;
 
-            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PRODUCT}?${urlParams}`;
+            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PRODUCT}/${documentId}?${populate}`;
             const response = await fetch(url);
             const result = await response.json();
 
@@ -123,7 +120,12 @@ export class Product {
 
     async searchByTitle(title) {
         try {
-            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PRODUCT}?filters[title][$containsi]=${title}&pagination[limit]=5&populate=cover`;
+            const filters = `filters[title][$containsi]=${encodeURIComponent(title)}`;
+            const pagination = `pagination[limit]=5`;
+            const populate = `populate=cover`;
+            const urlParams = `${filters}&${pagination}&${populate}`;
+
+            const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PRODUCT}?${urlParams}`;
             const response = await fetch(url);
             if (!response.ok) throw new Error("Error al buscar productos");
             const result = await response.json();
