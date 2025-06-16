@@ -19,15 +19,17 @@ import {
 } from "@chakra-ui/react";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { map } from "lodash";
-import { Category } from "@/api";
+import { Category, Product } from "@/api"; // ✅ importamos Product
 
 const categoryCtrl = new Category();
+const productCtrl = new Product(); // ✅ instancia
 
 export function Menu(props) {
   const { isOpenSearch } = props;
   const [categories, setCategories] = useState([]);
   const [showSearch, setShowSearch] = useState(isOpenSearch);
   const [searchText, setSearchText] = useState("");
+  const [results, setResults] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
   const inputRef = useRef(null);
@@ -59,9 +61,29 @@ export function Menu(props) {
 
   const onSearch = () => {
     router.replace(`/search?s=${searchText}`);
+    setResults([]);
   };
 
-  const openCloseSearch = () => setShowSearch(prev => !prev);
+  const openCloseSearch = () => {
+    setShowSearch(prev => !prev);
+    setResults([]);
+  };
+
+  // ✅ Búsqueda usando la API Product centralizada
+  useEffect(() => {
+    if (searchText.length < 2) {
+      setResults([]);
+      return;
+    }
+
+    const fetchResults = async () => {
+      const data = await productCtrl.searchByTitle(searchText);
+      setResults(data);
+    };
+
+    const delayDebounce = setTimeout(fetchResults, 300);
+    return () => clearTimeout(delayDebounce);
+  }, [searchText]);
 
   return (
     <Box
@@ -81,9 +103,8 @@ export function Menu(props) {
       mr="auto"
       display="flex"
       alignItems="center"
-      overflow="hidden"
+      overflow="visible"
     >
-      {/* Menú hamburguesa en móvil */}
       {isMobile && (
         <Button
           onClick={onOpen}
@@ -97,7 +118,6 @@ export function Menu(props) {
         </Button>
       )}
 
-      {/* Categorías en escritorio */}
       {!isMobile && (
         <Flex align="center" gap={6}>
           {map(categories, (category) => (
@@ -154,7 +174,7 @@ export function Menu(props) {
           w="100%"
           h="100%"
           borderRadius="full"
-          border={"1px solid gold"}
+          border="1px solid gold"
           bg="backgroundSecondary"
           display="flex"
           alignItems="center"
@@ -191,6 +211,43 @@ export function Menu(props) {
         </Box>
       )}
 
+      {/* Resultados flotantes */}
+      {showSearch && results.length > 0 && (
+        <Box
+          position="absolute"
+          top="100%"
+          left={0}
+          w="100%"
+          mt={2}
+          bg="backgroundSecondary"
+          borderRadius="md"
+          boxShadow="lg"
+          zIndex={20}
+          p={2}
+        >
+          {results.map((item) => (
+            <Link key={item.id} href={`/${item.slug}`} onClick={() => setShowSearch(false)}>
+              <Flex
+                align="center"
+                py={2}
+                px={3}
+                _hover={{ bg: "whiteAlpha.200", cursor: "pointer", borderRadius: "md" }}
+              >
+                <Image
+                  src={item.cover.url}
+                  alt={item.title}
+                  boxSize="40px"
+                  objectFit="cover"
+                  mr={3}
+                  borderRadius="md"
+                />
+                <Box color="white">{item.title}</Box>
+              </Flex>
+            </Link>
+          ))}
+        </Box>
+      )}
+
       {/* Drawer lateral para móvil */}
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
@@ -207,7 +264,7 @@ export function Menu(props) {
                   px={2}
                   color="white"
                   _hover={{ bg: "whiteAlpha.200", borderRadius: "md" }}
-                  onClick={onClose} // 👈 aquí cierras el Drawer
+                  onClick={onClose}
                 >
                   <Image
                     src={category.icon.url}
