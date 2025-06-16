@@ -119,7 +119,7 @@ export function GetBanner() {
                             objectFit="cover"
                         />
 
-                        <Box
+                        {/* <Box
                             position="absolute"
                             bottom="20"
                             left="4"
@@ -131,7 +131,7 @@ export function GetBanner() {
                             borderRadius="md"
                             fontSize="lg"
                         >
-                            {/* {item.description} */}
+                            {item.description}
                         </Box>
                         <Box
                             position="absolute"
@@ -144,8 +144,8 @@ export function GetBanner() {
                             borderRadius="md"
                             fontSize="lg"
                         >
-                            {/* {item.title} */}
-                        </Box>
+                            {item.title}
+                        </Box> */}
                     </Box>
                 ))}
             </Slider>
