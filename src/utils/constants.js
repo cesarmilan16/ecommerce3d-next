@@ -1,6 +1,6 @@
 export const ENV = {
-  SERVER_HOST: "https://server-strapi-3d-production.up.railway.app/",
-  API_URL: "https://server-strapi-3d-production.up.railway.app//api",
+  SERVER_HOST: "https://server-strapi-3d-production.up.railway.app",
+  API_URL: "https://server-strapi-3d-production.up.railway.app/api",
   ENDPOINTS: {
     AUTH: {
       REGISTER: "auth/local/register",
