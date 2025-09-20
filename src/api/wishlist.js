@@ -13,15 +13,11 @@ export class Wishlist {
 
             if (response.status !== 200) throw result;
 
-            if (!result.data || result.data.length === 0) {
+            if (result.data.length === 0) {
                 return false;
             }
 
-            // Devuelve el objeto con documentId para el frontend
-            return {
-                documentId: result.data[0].id,
-                ...result.data[0].attributes,
-            };
+            return result.data[0];
         } catch (error) {
             throw error;
         }
