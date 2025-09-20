@@ -15,11 +15,16 @@ export function WishlistIcon(props) {
     const { user } = useAuth();
 
     useEffect(() => {
-        if (!user || !productId) return;
+        if (!user || !productId) {
+            setIsInWishlist(false);
+            setWishlistId(null);
+            return;
+        }
         (async () => {
             try {
                 const response = await wishlistCtrl.check(user.id, productId);
-                if (response) {
+                // Si la respuesta tiene documentId, lo guardamos
+                if (response && response.documentId) {
                     setIsInWishlist(true);
                     setWishlistId(response.documentId);
                 } else {
