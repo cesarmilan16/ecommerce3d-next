@@ -4,7 +4,7 @@ export class Wishlist {
     async check(userId, productId) {
         try {
             const filterUser = `filters[user][id][$eq]=${userId}`;
-            const filterProduct = `filters[product][id][$eq]=${productId}`;
+            const filterProduct = `filters[product][documentId][$eq]=${productId}`;
             const urlParams = `${filterUser}&${filterProduct}`;
 
             const url = `${ENV.API_URL}/${ENV.ENDPOINTS.WISHLIST}?${urlParams}`;
