@@ -3,23 +3,21 @@ import { ENV, authFetch } from "@/utils";
 export class Wishlist {
     async check(userId, productId) {
         try {
-            const filterUser = `filters[user][id][$eq][0]=${userId}`;
-            const filterProduct = `filters[product][documentId][$eq][1]=${productId}`;
+            const filterUser = `filters[user][id][$eq]=${userId}`;
+            const filterProduct = `filters[product][id][$eq]=${productId}`;
             const urlParams = `${filterUser}&${filterProduct}`;
 
             const url = `${ENV.API_URL}/${ENV.ENDPOINTS.WISHLIST}?${urlParams}`;
-
             const response = await authFetch(url);
-            
             const result = await response.json();
 
             if (response.status !== 200) throw result;
 
-            if (result.data.length === 0) {
+            if (!result.data || result.data.length === 0) {
                 return false;
             }
 
-            return result.data;
+            return result.data[0];
         } catch (error) {
             throw error;
         }
