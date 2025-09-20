@@ -17,7 +17,7 @@ export class Wishlist {
                 return false;
             }
 
-            return result.data[0];
+            return result.data;
         } catch (error) {
             throw error;
         }
