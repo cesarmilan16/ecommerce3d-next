@@ -17,7 +17,11 @@ export class Wishlist {
                 return false;
             }
 
-            return result.data[0];
+            // Devuelve el objeto con documentId para el frontend
+            return {
+                documentId: result.data[0].id,
+                ...result.data[0].attributes,
+            };
         } catch (error) {
             throw error;
         }
