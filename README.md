@@ -1,40 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 🛒 E-commerce de Figuras 3D
 
-## Getting Started
+Este proyecto es una tienda online de figuras impresas en 3D, donde los usuarios pueden explorar productos, añadirlos a su lista de deseos, realizar pedidos y gestionar sus direcciones. Desarrollado con **Next.js**, **Strapi** y **Chakra UI**.
 
-First, run the development server:
+🔗 **Demo**: [https://3dhispalis.netlify.app](https://3dhispalis.netlify.app)
 
-```bash
+---
+
+## 🚀 Tecnologías
+
+- **Frontend**: Next.js, Chakra UI, React  
+- **Backend**: Strapi CMS (API REST personalizada)  
+- **Base de datos**: PostgreSQL (Railway) / SQLite en local  
+- **Almacenamiento de imágenes**: AWS S3  
+- **Pasarela de pago**: Stripe (implementación en curso)
+
+---
+
+## ⚙️ Instalación local
+
+1. Clona el repositorio:
+
+git clone https://github.com/usuario/ecommerce-figuras3d.git
+cd ecommerce-figuras3d
+
+2. Clona el repositorio:
+
+npm install
+# o
+pnpm install
+
+3. Arranca el entorno de desarrollo:
+
 npm run dev
-# or
-yarn dev
-# or
+# o
 pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Abre tu navegador en: http://localhost:3000
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## 🧩 Estructura del proyecto
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- `src/pages/`: Páginas principales
+- `src/components/`: Componentes reutilizables (Header, WishlistIcon, ProductCard, etc.)
+- `src/api/`: Funciones para interactuar con la API de Strapi
+- `src/utils/`: Funciones auxiliares (por ejemplo, cálculo de descuentos)
+- `src/hooks/`: Hooks personalizados (autenticación, carrito...)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛍️ Funcionalidades destacadas
 
-## Learn More
+- Navegación por categorías
+- Detalle de producto con descuentos y variaciones
+- Lista de deseos por usuario
+- Carrito persistente por sesión
+- Proceso de compra paso a paso (dirección, pago, resumen)
+- Panel de usuario con pedidos, direcciones y ajustes
+- Panel de administración con Strapi (gestión de productos, categorías, sliders...)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## 📦 API
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+La API se gestiona con **Strapi** y permite:
 
-## Deploy on Vercel
+- Registro / login de usuarios
+- CRUD de productos, categorías, sliders y pedidos
+- Gestión de direcciones y listas de deseos
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Ruta base de la API en desarrollo local**:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+http://localhost:1337/api
+
+markdown
+Copiar
+Editar
+
+---
+
+## 🌐 Despliegue
+
+- **Frontend** desplegado en [Vercel](https://vercel.com)
+- **Backend** desplegado en [Railway](https://railway.app) + AWS S3 para imágenes
+- Variables de entorno gestionadas desde `.env.local` y `.env` en ambos entornos
+
+---
+
+## ✅ Pendiente o en desarrollo
+
+- Integración completa de Stripe
+- Gestión de stock y estado de pedidos
+- Búsqueda avanzada y filtrado por precio
+- Mejoras en el SEO y accesibilidad
+
+---
+
+## 📚 Recursos útiles
+
+- [Documentación Next.js](https://nextjs.org/docs)
+- [Guía Chakra UI](https://chakra-ui.com/docs)
+- [Strapi API Docs](https://docs.strapi.io)
+- [Deploy en Vercel](https://vercel.com/docs)
