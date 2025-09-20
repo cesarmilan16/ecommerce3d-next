@@ -10,54 +10,54 @@ export function WishlistIcon(props) {
     const { productId } = props;
     const [isInWishlist, setIsInWishlist] = useState(false);
     const [wishlistId, setWishlistId] = useState(null); // Guarda el documentId
+    const [loading, setLoading] = useState(false);
     const toast = useToast();
     const { user } = useAuth();
 
     useEffect(() => {
         if (!user || !productId) return;
-
         (async () => {
             try {
                 const response = await wishlistCtrl.check(user.id, productId);
-
                 if (response) {
                     setIsInWishlist(true);
-                    setWishlistId(response.documentId); // usamos documentId
-                    console.log("documentId:", response.documentId);
+                    setWishlistId(response.documentId);
                 } else {
                     setIsInWishlist(false);
                     setWishlistId(null);
                 }
             } catch (error) {
-                console.error("Error al consultar wishlist:", error);
                 setIsInWishlist(false);
+                setWishlistId(null);
             }
         })();
     }, [user, productId]);
 
     const handleToggle = async () => {
-        if (!user) {
-            toast({
-                title: "Debes iniciar sesión para usar la lista de deseos.",
-                status: "info",
-                duration: 2000,
-                isClosable: true,
-            });
+        if (!user || loading) {
+            if (!user) {
+                toast({
+                    title: "Debes iniciar sesión para usar la lista de deseos.",
+                    status: "info",
+                    duration: 2000,
+                    isClosable: true,
+                });
+            }
             return;
         }
-
+        setLoading(true);
         try {
-            if (isInWishlist) {
-                console.log("Eliminando por documentId:", wishlistId);
-                await wishlistCtrl.delete(wishlistId); // usa documentId
+            if (isInWishlist && wishlistId) {
+                await wishlistCtrl.delete(wishlistId);
                 setIsInWishlist(false);
+                setWishlistId(null);
                 toast({
                     title: "Eliminado de la lista de deseos",
                     status: "warning",
                     duration: 1500,
                     isClosable: true,
                 });
-            } else {
+            } else if (!isInWishlist) {
                 const response = await wishlistCtrl.add(user.id, productId);
                 setIsInWishlist(true);
                 setWishlistId(response.data.documentId);
@@ -70,13 +70,15 @@ export function WishlistIcon(props) {
             }
         } catch (error) {
             console.error("Error al modificar la wishlist:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <IconButton
             icon={isInWishlist ? <FaHeart /> : <FaRegHeart />}
-            aria-label="Añadir a la lista de deseos"
+            aria-label={isInWishlist ? "Quitar de la lista de deseos" : "Añadir a la lista de deseos"}
             variant="solid"
             bg="gray.700"
             color={isInWishlist ? "#e74c3c" : "gray.300"}
@@ -86,6 +88,7 @@ export function WishlistIcon(props) {
             onClick={handleToggle}
             borderRadius="md"
             mt={2}
+            isDisabled={loading}
         />
     );
 }
